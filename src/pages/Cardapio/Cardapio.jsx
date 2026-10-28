@@ -65,7 +65,7 @@ function Cardapio() {
         </div>
 
         <nav>
-          <Link to="/">Início</Link>
+          <Link to="/home">Início</Link>
           <Link to="/cardapio" className="ativo">Cardápio</Link>
           <Link to="/avaliar">Avaliar</Link>
           <Link to="/sugerir">Sugerir</Link>

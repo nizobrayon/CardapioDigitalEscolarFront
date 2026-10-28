@@ -1,0 +1,156 @@
+
+.tela-avaliar {
+  min-height: 100vh;
+  background-color: #f5f7f2;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.avaliar-cabecalho {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.avaliar-cabecalho h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.avaliar-cabecalho nav {
+  display: flex;
+  gap: 20px;
+}
+
+.avaliar-cabecalho nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.avaliar-container {
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.avaliar-container h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #2e7d32;
+}
+
+.avaliar-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.avaliar-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.avaliar-campo label,
+.avaliar-estrelas p {
+  font-weight: bold;
+}
+
+.avaliar-campo input,
+.avaliar-campo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.avaliar-campo textarea {
+  resize: vertical;
+}
+
+.avaliar-campo small {
+  color: #666;
+  text-align: right;
+}
+
+.avaliar-estrelas {
+  text-align: center;
+}
+
+.avaliar-estrelas p {
+  margin-bottom: 12px;
+}
+
+.estrelas {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.estrela {
+  border: none;
+  background: transparent;
+  color: #ccc;
+  font-size: 42px;
+  cursor: pointer;
+  padding: 0 3px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.estrela:hover {
+  transform: scale(1.15);
+}
+
+.estrela.selecionada {
+  color: #f5b301;
+}
+
+.texto-nota {
+  font-size: 14px;
+  color: #666;
+  font-weight: normal !important;
+}
+
+.botao-enviar {
+  padding: 14px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.botao-enviar:hover {
+  background-color: #256428;
+}
+
+.link-voltar {
+  text-align: center;
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .avaliar-cabecalho {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .avaliar-container {
+    margin: 20px 12px;
+    padding: 22px;
+  }
+}

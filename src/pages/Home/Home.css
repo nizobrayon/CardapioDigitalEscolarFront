@@ -1,180 +1,225 @@
-* {
-  margin: 0;
-  padding: 0;
+
+/* CONTEÚDO DA HOME */
+.main-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
+.home-boas-vindas {
+  margin-bottom: 35px;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f8f9f7;
+.home-subtitulo {
+  color: #43845a;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
-.home {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.home-boas-vindas h1 {
+  color: #243b2b;
+  font-size: 32px;
+  margin: 10px 0;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
+.home-boas-vindas > p:last-child {
+  color: #666;
+}
 
-.header {
-  height: 104px;
-  background-color: #ffffff;
+/* SEÇÃO DO CARDÁPIO */
+.home-cardapio {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  margin-bottom: 30px;
+}
 
+.home-titulo-secao {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 8.5%;
-
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  font-size: 30px;
-  font-weight: bold;
-
-  color: #286b3d;
+.home-titulo-secao h2 {
+  color: #243b2b;
+  margin: 0 0 8px;
 }
 
-.logo-icon {
-  font-size: 25px;
-  filter: grayscale(20%);
+.home-titulo-secao p {
+  color: #777;
+  margin: 0;
 }
 
-/* =========================
-   MENU
-========================= */
-
-.menu {
-  display: flex;
-  align-items: center;
-  gap: 42px;
-}
-
-.menu a {
-  position: relative;
-
+.home-ver-cardapio,
+.home-botao-detalhes {
+  display: inline-block;
+  background: #34784a;
+  color: #fff;
   text-decoration: none;
-  color: #222;
-
-  font-size: 23px;
-  font-weight: 400;
-
-  padding: 8px 0;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
-.menu a:hover {
-  color: #286b3d;
+.home-ver-cardapio:hover,
+.home-botao-detalhes:hover {
+  background: #285e39;
 }
 
-/* Cardápio selecionado */
-
-.menu .active {
-  color: #286b3d;
+.home-refeicao-card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: #f3f8f1;
+  border-radius: 14px;
+  padding: 25px;
 }
 
-.menu .active::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -12px;
-
-  height: 3px;
-
-  background-color: #286b3d;
-}
-
-/* =========================
-   ÁREA PRINCIPAL
-========================= */
-
-.main-content {
-  flex: 1;
-  min-height: calc(100vh - 184px);
-
-  background-color: #f8f9f7;
-}
-
-/* =========================
-   RODAPÉ
-========================= */
-
-.footer {
-  height: 70px;
-
+.home-refeicao-icone {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-color: #286b3d;
-
-  color: white;
-
-  font-size: 16px;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background: #e0eddb;
+  border-radius: 50%;
+  font-size: 48px;
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media (max-width: 800px) {
-
-  .header {
-    padding: 0 30px;
-  }
-
-  .logo {
-    font-size: 23px;
-  }
-
-  .menu {
-    gap: 20px;
-  }
-
-  .menu a {
-    font-size: 17px;
-  }
+.home-refeicao-info h3 {
+  color: #243b2b;
+  font-size: 25px;
+  margin: 10px 0;
 }
 
-@media (max-width: 600px) {
+.home-refeicao-info p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
 
-  .header {
-    height: auto;
-    padding: 20px;
+.home-refeicao-categoria {
+  display: inline-block;
+  background: #dcebd8;
+  color: #34784a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
 
+.home-mensagem,
+.home-erro {
+  padding: 15px;
+  text-align: center;
+}
+
+.home-erro {
+  color: #b42318;
+}
+
+.home-sem-refeicao {
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.home-sem-refeicao > span {
+  font-size: 45px;
+}
+
+.home-sem-refeicao h3 {
+  color: #243b2b;
+}
+
+.home-sem-refeicao p {
+  color: #666;
+}
+
+.home-sem-refeicao a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #34784a;
+  font-weight: bold;
+}
+
+/* ATALHOS */
+.home-acoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.home-acao {
+  padding: 25px;
+  background: #fff;
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.home-acao:hover {
+  transform: translateY(-3px);
+}
+
+.home-acao > span {
+  font-size: 30px;
+}
+
+.home-acao h3 {
+  color: #243b2b;
+}
+
+.home-acao p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  color: #777;
+}
+
+/* CELULAR */
+@media (max-width: 650px) {
+  .main-content {
+    padding: 25px 15px;
+  }
+
+  .home-boas-vindas h1 {
+    font-size: 26px;
+  }
+
+  .home-cardapio {
+    padding: 18px;
+  }
+
+  .home-refeicao-card {
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
   }
 
-  .menu {
-    width: 100%;
-    justify-content: center;
-    gap: 20px;
+  .home-refeicao-icone {
+    width: 75px;
+    height: 75px;
+    font-size: 38px;
   }
 
-  .menu a {
-    font-size: 15px;
+  .home-refeicao-info h3 {
+    font-size: 22px;
   }
 
-  .footer {
-    font-size: 13px;
-    text-align: center;
-    padding: 15px;
+  .home-acoes {
+    grid-template-columns: 1fr;
   }
 }

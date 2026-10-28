@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../../services/api";
@@ -7,6 +8,7 @@ function CriarRefeicao() {
   const [nomeRefeicao, setNomeRefeicao] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [diaSemana, setDiaSemana] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,184 +20,72 @@ function CriarRefeicao() {
         nomeRefeicao: nomeRefeicao,
         descricao: descricao,
         categoria: categoria,
+        diaSemana: diaSemana,
       });
 
-      alert("Cadastro realizado com sucesso!");
-
+      alert("Refeição cadastrada com sucesso!");
       navigate("/cardapio");
     } catch (error) {
       console.error(error);
-
-      if (error.response) {
-        alert(
-          error.response.data.mensagem ||
-            "Erro ao realizar cadastro."
-        );
-      } else {
-        alert("Não foi possível conectar ao servidor.");
-      }
+      alert("Não foi possível cadastrar a refeição.");
     }
   }
 
   return (
-    <div className="criar-page">
+    <div className="criar-refeicao">
+      <h1>Cadastrar Refeição</h1>
 
-      {/* HEADER */}
+      <form onSubmit={handleCriarRefeicao}>
+        <label htmlFor="nomeRefeicao">Nome da refeição</label>
+        <input
+          id="nomeRefeicao"
+          type="text"
+          value={nomeRefeicao}
+          onChange={(e) => setNomeRefeicao(e.target.value)}
+          required
+        />
 
-      <header className="header">
+        <label htmlFor="descricao">Descrição</label>
+        <textarea
+          id="descricao"
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
+          required
+        />
 
-        <div className="logo">
-          🌿 Jardim Secreto
-        </div>
-
-        <nav className="menu">
-
-          <Link to="/">
-            Início
-          </Link>
-
-          <Link
-            to="/cardapio"
-            className="active"
-          >
-            Cardápio
-          </Link>
-
-          <Link to="#">
-            Avaliar
-          </Link>
-
-          <Link to="#">
-            Sugerir
-          </Link>
-
-        </nav>
-
-      </header>
-
-
-      {/* FORMULÁRIO */}
-
-      <main className="criar-container">
-
-        <Link
-          to="/cardapio"
-          className="voltar"
+        <label htmlFor="categoria">Categoria</label>
+        <select
+          id="categoria"
+          value={categoria}
+          onChange={(e) => setCategoria(e.target.value)}
+          required
         >
-          ← Voltar para o cardápio
-        </Link>
+          <option value="">Selecione uma categoria</option>
+          <option value="Café da Manhã">Café da Manhã</option>
+          <option value="Almoço">Almoço</option>
+          <option value="Café da Tarde">Café da Tarde</option>
+          <option value="Janta">Janta</option>
+        </select>
 
+        <label htmlFor="diaSemana">Dia da semana</label>
+        <select
+          id="diaSemana"
+          value={diaSemana}
+          onChange={(e) => setDiaSemana(e.target.value)}
+          required
+        >
+          <option value="">Selecione um dia</option>
+          <option value="Segunda-feira">Segunda-feira</option>
+          <option value="Terça-feira">Terça-feira</option>
+          <option value="Quarta-feira">Quarta-feira</option>
+          <option value="Quinta-feira">Quinta-feira</option>
+          <option value="Sexta-feira">Sexta-feira</option>
+        </select>
 
-        <div className="form-box">
+        <button type="submit">Cadastrar refeição</button>
 
-          <h1>Criar refeição</h1>
-
-          <p className="form-subtitle">
-            Cadastre uma nova refeição no cardápio escolar.
-          </p>
-
-
-          <form onSubmit={handleCriarRefeicao}>
-
-            {/* NOME */}
-
-            <div className="campo">
-
-              <label htmlFor="nomeRefeicao">
-                Nome da refeição
-              </label>
-
-              <input
-                id="nomeRefeicao"
-                type="text"
-                placeholder="Ex: Arroz, feijão e frango"
-                value={nomeRefeicao}
-                onChange={(event) =>
-                  setNomeRefeicao(event.target.value)
-                }
-                required
-              />
-
-            </div>
-
-
-            {/* DESCRIÇÃO */}
-
-            <div className="campo">
-
-              <label htmlFor="descricao">
-                Descrição
-              </label>
-
-              <textarea
-                id="descricao"
-                placeholder="Descreva os alimentos que fazem parte da refeição..."
-                rows="5"
-                value={descricao}
-                onChange={(event) =>
-                  setDescricao(event.target.value)
-                }
-                required
-              />
-
-            </div>
-
-
-            {/* CATEGORIA */}
-
-            <div className="campo">
-
-              <label htmlFor="categoria">
-                Categoria
-              </label>
-
-              <input
-                id="categoria"
-                type="text"
-                placeholder="Ex: Janta, Almoço, Café da Manhã..."
-                value={categoria}
-                onChange={(event) =>
-                  setCategoria(event.target.value)
-                }
-                required
-              />
-
-            </div>
-
-
-            {/* BOTÕES */}
-
-            <div className="form-buttons">
-
-              <Link
-                to="/cardapio"
-                className="btn-cancelar"
-              >
-                Cancelar
-              </Link>
-
-              <button
-                type="submit"
-                className="btn-salvar"
-              >
-                Criar refeição
-              </button>
-
-            </div>
-
-          </form>
-
-        </div>
-
-      </main>
-
-
-      {/* FOOTER */}
-
-      <footer className="footer">
-        <p>Cardápio Escolar © 2026</p>
-      </footer>
-
+        <Link to="/cardapio">Voltar para o cardápio</Link>
+      </form>
     </div>
   );
 }

@@ -1,363 +1,62 @@
-* {
-  margin: 0;
-  padding: 0;
+
+.criar-refeicao {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.criar-refeicao h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.criar-refeicao form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.criar-refeicao label {
+  font-weight: bold;
+}
+
+.criar-refeicao input,
+.criar-refeicao textarea,
+.criar-refeicao select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
-/* PÁGINA */
-
-.criar-page {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #f8fafc;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* HEADER */
-
-.header {
-  height: 90px;
-  width: 100%;
-  background-color: #ffffff;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 8%;
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  color: #166534;
-  font-size: 28px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.menu {
-  display: flex;
-  gap: 35px;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #1e293b;
-  font-size: 17px;
-}
-
-.menu a:hover {
-  color: #166534;
-}
-
-.menu .active {
-  color: #166534;
-  font-weight: bold;
-}
-
-/* CONTAINER */
-
-.criar-container {
-  flex: 1;
-
-  width: 100%;
-  max-width: 750px;
-
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-/* VOLTAR */
-
-.voltar {
-  display: inline-block;
-
-  color: #166534;
-  text-decoration: none;
-
-  font-size: 15px;
-
-  margin-bottom: 20px;
-}
-
-.voltar:hover {
-  text-decoration: underline;
-}
-
-/* FORMULÁRIO */
-
-.form-box {
-  width: 100%;
-
-  padding: 25px;
-
-  background-color: #ffffff;
-
-  border-radius: 12px;
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.form-box h1 {
-  text-align: center;
-
-  color: #166534;
-
-  font-size: 30px;
-
-  margin-bottom: 8px;
-}
-
-.form-subtitle {
-  text-align: center;
-
-  color: #64748b;
-
-  margin-bottom: 25px;
-}
-
-/* CAMPOS */
-
-.campo {
-  margin-bottom: 20px;
-}
-
-.campo label {
-  display: block;
-
-  margin-bottom: 10px;
-
-  color: #1e293b;
-
-  font-weight: bold;
-}
-
-.campo input,
-.campo textarea,
-.campo select {
-  width: 100%;
-
-  padding: 12px;
-
-  border: 1px solid #cbd5e1;
-
-  border-radius: 6px;
-
-  font-size: 15px;
-
-  font-family: Arial, sans-serif;
-
-  outline: none;
-
-  background-color: #ffffff;
-}
-
-.campo input:focus,
-.campo textarea:focus,
-.campo select:focus {
-  border-color: #16a34a;
-}
-
-.campo textarea {
+.criar-refeicao textarea {
   min-height: 100px;
   resize: vertical;
 }
 
-/* BOTÕES */
-
-.form-buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 15px;
-
-  margin-top: 25px;
-}
-
-.btn-cancelar,
-.btn-salvar {
-  padding: 12px 22px;
-
-  border-radius: 6px;
-
-  font-size: 15px;
-
-  cursor: pointer;
-
-  text-decoration: none;
-}
-
-.btn-cancelar {
-  background-color: #eee;
-
-  color: #333;
-
-  border: none;
-}
-
-.btn-cancelar:hover {
-  background-color: #ddd;
-}
-
-.btn-salvar {
-  background-color: #16a34a;
-
-  color: white;
-
-  border: none;
-}
-
-.btn-salvar:hover {
-  background-color: #166534;
-}
-
-/* FOOTER */
-
-.footer {
-  min-height: 70px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: #166534;
-
-  color: white;
-
-  font-size: 14px;
-}
-
-/* GERENCIAR */
-
-.gerenciar {
-  flex: 1;
-
+.criar-refeicao button {
   width: 100%;
-  max-width: 650px;
-
-  margin: 0 auto;
-
-  padding: 40px 20px;
-}
-
-.gerenciar h1 {
-  text-align: center;
-
-  margin-bottom: 8px;
-
-  color: #166534;
-}
-
-.gerenciar p {
-  text-align: center;
-
-  color: #64748b;
-
-  margin-bottom: 25px;
-}
-
-.gerenciar form {
-  background-color: #ffffff;
-
-  padding: 25px;
-
-  border-radius: 12px;
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.gerenciar label {
-  display: block;
-
-  margin-bottom: 10px;
-  margin-top: 20px;
-
-  font-weight: bold;
-
-  color: #1e293b;
-}
-
-.gerenciar label:first-child {
-  margin-top: 0;
-}
-
-.gerenciar input,
-.gerenciar textarea {
-  width: 100%;
-
+  margin-top: 10px;
   padding: 12px;
-
-  border: 1px solid #cbd5e1;
-
-  border-radius: 6px;
-
-  font-size: 15px;
-
-  font-family: Arial, sans-serif;
-
-  outline: none;
-}
-
-.gerenciar input:focus,
-.gerenciar textarea:focus {
-  border-color: #16a34a;
-}
-
-.gerenciar textarea {
-  min-height: 100px;
-
-  resize: vertical;
-}
-
-/* BOTÕES DO GERENCIAR */
-
-.botoes {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 15px;
-
-  margin-top: 25px;
-}
-
-.botoes button {
   border: none;
-
-  padding: 12px 22px;
-
-  border-radius: 6px;
-
-  cursor: pointer;
-
-  font-size: 15px;
-}
-
-.cancelar {
-  background-color: #eee;
-
-  color: #333;
-}
-
-.cancelar:hover {
-  background-color: #ddd;
-}
-
-.salvar {
-  background-color: #16a34a;
-
+  border-radius: 8px;
+  background-color: #2e7d32;
   color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.salvar:hover {
-  background-color: #166534;
+.criar-refeicao button:hover {
+  background-color: #256428;
+}
+
+.criar-refeicao a {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #2e7d32;
+  text-decoration: none;
 }

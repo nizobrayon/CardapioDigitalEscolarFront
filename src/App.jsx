@@ -8,6 +8,8 @@ import Cardapio from "./pages/Cardapio/Cardapio";
 import CriarRefeicao from "./pages/Refeicao/CriarRefeicao";
 import GerenciarRefeicoes from "./pages/Refeicao/GerenciarRefeicao";
 import Perfil from "./pages/Perfil/Perfil";
+import Avaliar from "./pages/Avaliar/Avaliar";
+import Sugerir from "./pages/Sugerir/Sugerir";
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
         <Route path="/loginNutri" element={<LoginNutri />} />
         <Route path="/home" element={<Home />} />
         <Route path="/cardapio" element={<Cardapio />} />
+        <Route path="/avaliar" element={<Avaliar />} />
+        <Route path="/sugerir" element={<Sugerir/>} />
+
       </Routes>
     </BrowserRouter>
   );
