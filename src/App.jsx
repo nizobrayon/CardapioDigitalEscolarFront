@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import LoginAluno from "./pages/Login/LoginAluno";
 import Cadastro from "./pages/Cadastro";
@@ -15,6 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/gerenciarRefeicao/:id" element={<GerenciarRefeicoes />} />
         <Route path="/criar-refeicao" element={<CriarRefeicao />} />
@@ -24,8 +25,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/cardapio" element={<Cardapio />} />
         <Route path="/avaliar" element={<Avaliar />} />
-        <Route path="/sugerir" element={<Sugerir/>} />
-
+        <Route path="/sugerir" element={<Sugerir />} />
       </Routes>
     </BrowserRouter>
   );

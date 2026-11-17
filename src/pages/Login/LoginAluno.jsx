@@ -1,5 +1,6 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { setUsuarioLogado } from "../../services/auth";
 import "./Login.css";
 
 function LoginAluno() {
@@ -42,18 +43,15 @@ function LoginAluno() {
 
       if (!resposta.ok) {
         throw new Error(
-          dados.mensagem || "Não foi possível entrar."
+          dados.mensagem || "NÃ£o foi possÃ­vel entrar."
         );
       }
-
-      // Guarda o nome para poder utilizá-lo na tela inicial.
-      navigate("/home", {
-        state: { usuario: dados.usuario },
-      });
+      setUsuarioLogado(dados.usuario);
+      navigate("/home");
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"
-          ? "Não foi possível conectar ao servidor."
+          ? "NÃ£o foi possÃ­vel conectar ao servidor."
           : erro.message
       );
     } finally {
@@ -64,7 +62,7 @@ function LoginAluno() {
   return (
     <div className="loginContainer">
       <div className="login-box">
-        <h1>Cardápio Digital Escolar</h1>
+        <h1>CardÃ¡pio Digital Escolar</h1>
 
         <p className="login-subtitle">
           Entre na sua conta
@@ -134,7 +132,7 @@ function LoginAluno() {
         </form>
 
         <p className="cadastro-text">
-          Ainda não possui uma conta?{" "}
+          Ainda nÃ£o possui uma conta?{" "}
           <Link to="/cadastro">Cadastre-se</Link>
         </p>
       </div>
@@ -143,3 +141,4 @@ function LoginAluno() {
 }
 
 export default LoginAluno;
+

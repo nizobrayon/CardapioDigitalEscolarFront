@@ -1,11 +1,11 @@
 
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { getUsuarioLogado } from "../../services/auth";
 import "./Home.css";
 
 function Home() {
-  const location = useLocation();
-  const usuario = location.state?.usuario;
+  const usuario = getUsuarioLogado();
 
   const nomeUsuario = usuario?.nomeusuario || "Meu perfil";
 

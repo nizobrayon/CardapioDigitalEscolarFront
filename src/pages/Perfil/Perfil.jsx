@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+﻿import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  clearUsuarioLogado,
+  getIdUsuario,
+  getUsuarioLogado,
+  setUsuarioLogado,
+} from "../../services/auth";
 import "./Perfil.css";
 
 function Perfil() {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const usuarioLogin = location.state?.usuario;
-
+  const [usuarioLogin, setUsuarioLogin] = useState(() => getUsuarioLogado());
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [ra, setRa] = useState("");
@@ -15,20 +19,17 @@ function Perfil() {
   const [carregando, setCarregando] = useState(true);
   const [editando, setEditando] = useState(false);
 
-  // Busca os dados do aluno no banco de dados
   useEffect(() => {
     async function buscarPerfil() {
-      if (!usuarioLogin?.idusuario) {
+      const idUsuario = getIdUsuario(usuarioLogin);
+      if (!idUsuario) {
         setMensagem("Não foi possível identificar sua conta. Faça login novamente.");
         setCarregando(false);
         return;
       }
 
       try {
-        const resposta = await fetch(
-          `http://localhost:3000/usuarios/${usuarioLogin.idusuario}`
-        );
-
+        const resposta = await fetch(`http://localhost:3000/usuarios/${idUsuario}`);
         const dados = await resposta.json();
 
         if (!resposta.ok) {
@@ -38,6 +39,9 @@ function Perfil() {
         setNome(dados.usuario.nomeusuario || "");
         setEmail(dados.usuario.emailusuario || "");
         setRa(dados.usuario.raaluno || "");
+        const novo = { ...(usuarioLogin || {}), ...dados.usuario };
+        setUsuarioLogin(novo);
+        setUsuarioLogado(novo);
       } catch (erro) {
         setMensagem(
           erro.message === "Failed to fetch"
@@ -50,33 +54,28 @@ function Perfil() {
     }
 
     buscarPerfil();
-  }, [usuarioLogin?.idusuario]);
+  }, []);
 
-  // Salva as alterações no banco de dados
   async function salvarAlteracoes(event) {
     event.preventDefault();
     setMensagem("");
 
-    if (!usuarioLogin?.idusuario) {
+    const idUsuario = getIdUsuario(usuarioLogin);
+    if (!idUsuario) {
       setMensagem("Faça login novamente para alterar seus dados.");
       return;
     }
 
     try {
-      const resposta = await fetch(
-        `http://localhost:3000/usuarios/${usuarioLogin.idusuario}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nomeUsuario: nome,
-            emailUsuario: email,
-            raAluno: ra,
-          }),
-        }
-      );
+      const resposta = await fetch(`http://localhost:3000/usuarios/${idUsuario}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nomeUsuario: nome,
+          emailUsuario: email,
+          raAluno: ra,
+        }),
+      });
 
       const dados = await resposta.json();
 
@@ -87,6 +86,9 @@ function Perfil() {
       setNome(dados.usuario.nomeusuario || "");
       setEmail(dados.usuario.emailusuario || "");
       setRa(dados.usuario.raaluno || "");
+      const novo = { ...(usuarioLogin || {}), ...dados.usuario };
+      setUsuarioLogin(novo);
+      setUsuarioLogado(novo);
       setMensagem("Dados atualizados com sucesso!");
       setEditando(false);
     } catch (erro) {
@@ -98,7 +100,6 @@ function Perfil() {
     }
   }
 
-  // Exclui a conta do aluno
   async function excluirConta() {
     const confirmar = window.confirm(
       "Tem certeza de que deseja excluir sua conta? Essa ação não poderá ser desfeita."
@@ -106,18 +107,16 @@ function Perfil() {
 
     if (!confirmar) return;
 
-    if (!usuarioLogin?.idusuario) {
+    const idUsuario = getIdUsuario(usuarioLogin);
+    if (!idUsuario) {
       setMensagem("Não foi possível identificar sua conta. Faça login novamente.");
       return;
     }
 
     try {
-      const resposta = await fetch(
-        `http://localhost:3000/usuarios/${usuarioLogin.idusuario}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const resposta = await fetch(`http://localhost:3000/usuarios/${idUsuario}`, {
+        method: "DELETE",
+      });
 
       const dados = await resposta.json();
 
@@ -125,8 +124,9 @@ function Perfil() {
         throw new Error(dados.mensagem || "Erro ao excluir conta.");
       }
 
+      clearUsuarioLogado();
       window.alert("Conta excluída com sucesso!");
-      navigate("/loginaluno", { replace: true });
+      navigate("/loginAluno", { replace: true });
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"
@@ -209,11 +209,7 @@ function Perfil() {
           )}
         </form>
 
-        <button
-          type="button"
-          className="botao-excluir"
-          onClick={excluirConta}
-        >
+        <button type="button" className="botao-excluir" onClick={excluirConta}>
           Excluir minha conta
         </button>
 
