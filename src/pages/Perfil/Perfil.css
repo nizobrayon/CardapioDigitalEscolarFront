@@ -8,7 +8,7 @@
 }
 
 .perfil-page .app-header .logo {
-  color: var(--brand-700);
+  color: var(--cor-marrom);
 }
 
 .perfil-avatar {
@@ -18,16 +18,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background-color: var(--brand-50);
-  color: var(--brand-700);
+  color: var(--cor-terracota);
   font-size: 2rem;
 }
 
 .perfil-excluir h3 {
   margin-top: 0;
   margin-bottom: var(--space-2);
-  color: var(--danger);
+  color: #8C4033;
 }
 
 .perfil-excluir p {

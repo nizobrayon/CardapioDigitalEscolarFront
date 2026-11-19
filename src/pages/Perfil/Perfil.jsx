@@ -12,6 +12,7 @@ function Perfil() {
   const navigate = useNavigate();
 
   const [usuarioLogin, setUsuarioLogin] = useState(() => getUsuarioLogado());
+  const tipoUsuario = usuarioLogin?.tipoUsuario || null;
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [ra, setRa] = useState("");
@@ -156,7 +157,17 @@ function Perfil() {
           Cardápio Digital Escolar
         </Link>
         <nav className="app-nav">
-          <Link to="/home">Início</Link>
+          {tipoUsuario === "nutricionista" ? (
+            <>
+              <Link to="/criar-refeicao">Criar refeição</Link>
+              <Link to="/avaliacoes-alunos">Avaliações</Link>
+              <Link to="/sugestoes-alunos">Sugestões</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/home">Início</Link>
+            </>
+          )}
         </nav>
       </header>
 

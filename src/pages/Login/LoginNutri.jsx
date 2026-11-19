@@ -37,7 +37,7 @@ function LoginNutri() {
       }
 
       setUsuarioLogado(dados.usuario);
-      navigate("/home");
+      navigate("/criar-refeicao");
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"

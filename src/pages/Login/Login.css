@@ -5,28 +5,23 @@
 .login-page,
 .cadastro-page {
   min-height: 100svh;
-  background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+  background: linear-gradient(180deg, #FFFDF9 0%, #F7EFE7 100%);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .login-page .app-header,
 .cadastro-page .app-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 253, 249, 0.85);
   backdrop-filter: blur(8px);
-  border-bottom: none;
-  box-shadow: none;
-  padding: 1.5rem var(--space-6);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem var(--space-6);
 }
 
 .login-page .app-header .logo,
 .cadastro-page .app-header .logo {
-  color: var(--brand-700);
+  color: var(--cor-marrom);
 }
 
 .login-page .app-nav a,
@@ -36,18 +31,22 @@
 
 .login-page .app-nav a:hover,
 .cadastro-page .app-nav a:hover {
-  color: var(--brand-700);
+  color: var(--cor-terracota);
 }
 
 .login-page .main-content,
 .cadastro-page .main-content {
   padding: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-card,
 .card.login-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   padding: var(--space-8) var(--space-6);
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -59,6 +58,7 @@
   font-size: 1.875rem;
   margin-bottom: 0.25rem;
   letter-spacing: -0.02em;
+  color: var(--cor-marrom);
 }
 
 .cadastro-text {
@@ -69,13 +69,13 @@
 }
 
 .cadastro-text a {
-  color: var(--brand-700);
+  color: var(--cor-terracota);
   font-weight: 700;
 }
 
 .cadastro-text a:hover {
   text-decoration: underline;
-  color: var(--brand-600);
+  color: #8C4033;
 }
 
 .mensagem-cadastro {

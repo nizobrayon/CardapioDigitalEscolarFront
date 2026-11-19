@@ -10,7 +10,7 @@
 
 .criar-refeicao-page .app-header .logo,
 .gerenciar-refeicao-page .app-header .logo {
-  color: var(--brand-700);
+  color: var(--cor-marrom);
 }
 
 .botoes {
@@ -29,13 +29,13 @@
 }
 
 .salvar {
-  background-color: var(--brand-600);
+  background-color: var(--cor-terracota);
   color: var(--text-inverse);
-  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.25);
+  box-shadow: 0 4px 6px -1px rgba(169, 79, 61, 0.25);
 }
 
 .salvar:hover:not(:disabled) {
-  background-color: var(--brand-700);
+  background-color: #8C4033;
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(169, 79, 61, 0.3);
 }

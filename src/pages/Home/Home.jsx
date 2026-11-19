@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { getUsuarioLogado, getTipoUsuario } from "../../services/auth";
 import "./Home.css";
 
 function Home() {
   const location = useLocation();
-  const usuario = location.state?.usuario;
+  const usuarioDoState = location.state?.usuario;
+  const usuarioLogado = getUsuarioLogado();
+  const usuario = usuarioDoState || usuarioLogado;
 
   const nomeUsuario = usuario?.nomeusuario || "Meu perfil";
+  const tipoUsuario = usuario?.tipoUsuario || getTipoUsuario() || null;
 
   const [refeicao, setRefeicao] = useState(null);
   const [carregando, setCarregando] = useState(true);
@@ -55,10 +59,22 @@ function Home() {
           Cardápio Digital Escolar
         </Link>
         <nav className="app-nav">
-          <Link to="/home" className="ativo">Início</Link>
-          <Link to="/cardapio">Cardápio</Link>
-          <Link to="/avaliar">Avaliar</Link>
-          <Link to="/sugerir">Sugerir</Link>
+          {tipoUsuario === "nutricionista" ? (
+            <>
+              <Link to="/criar-refeicao">Criar refeição</Link>
+              <Link to="/avaliacoes-alunos">Avaliações</Link>
+              <Link to="/sugestoes-alunos">Sugestões</Link>
+              <Link to="/perfil">Perfil</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/home" className="ativo">Início</Link>
+              <Link to="/cardapio">Cardápio</Link>
+              <Link to="/avaliar">Avaliar</Link>
+              <Link to="/sugerir">Sugerir</Link>
+              <Link to="/perfil">Perfil</Link>
+            </>
+          )}
         </nav>
         <Link to="/perfil" className="perfil-link">
           <span className="perfil-icone">👤</span>

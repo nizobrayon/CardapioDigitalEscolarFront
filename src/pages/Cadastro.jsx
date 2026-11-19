@@ -104,7 +104,7 @@ function Cadastro() {
           Cardápio Digital Escolar
         </Link>
         <nav className="app-nav">
-          <Link to="/loginaluno">Voltar ao login</Link>
+          <Link to="/loginAluno">Voltar ao login</Link>
         </nav>
       </header>
 
@@ -228,7 +228,7 @@ function Cadastro() {
 
             <p className="cadastro-text text-center mt-6">
               Já possui uma conta?{" "}
-              <Link to="/loginaluno">Faça login</Link>
+              <Link to="/loginAluno">Faça login</Link>
             </p>
           </div>
         </div>

@@ -20,3 +20,20 @@ export function clearUsuarioLogado() {
 export function getIdUsuario(usuario) {
   return usuario?.idusuario ?? usuario?.idUsuario ?? null;
 }
+
+export function getTipoUsuario(usuario) {
+  const u = usuario ?? getUsuarioLogado();
+  return u?.tipoUsuario ?? null;
+}
+
+export function isAluno(usuario) {
+  return getTipoUsuario(usuario) === "aluno";
+}
+
+export function isNutricionista(usuario) {
+  return getTipoUsuario(usuario) === "nutricionista";
+}
+
+export function isAuthenticated() {
+  return getUsuarioLogado() !== null;
+}

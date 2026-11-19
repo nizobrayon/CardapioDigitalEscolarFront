@@ -38,6 +38,9 @@ function CriarRefeicao() {
         </Link>
         <nav className="app-nav">
           <Link to="/cardapio">Cardápio</Link>
+          <Link to="/avaliacoes-alunos">Avaliações</Link>
+          <Link to="/sugestoes-alunos">Sugestões</Link>
+          <Link to="/perfil">Perfil</Link>
         </nav>
       </header>
 

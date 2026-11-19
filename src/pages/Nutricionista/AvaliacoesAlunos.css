@@ -1,0 +1,103 @@
+/* ========================================
+   AVALIAÇÕES DOS ALUNOS - NUTRICIONISTA
+   ======================================== */
+
+.avaliacoes-alunos-page {
+  min-height: 100svh;
+  background-color: var(--bg-body);
+}
+
+.avaliacoes-alunos-page .app-header .logo {
+  color: var(--cor-marrom);
+}
+
+.titulo-secao h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--cor-marrom);
+}
+
+.titulo-secao p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.resumo-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.resumo-card {
+  text-align: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.resumo-card h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lista-avaliacoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.card-avaliacao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--transition);
+}
+
+.card-avaliacao:hover {
+  border-color: var(--cor-bege-rosado);
+  box-shadow: var(--shadow);
+}
+
+.avaliacao-header h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.125rem;
+  color: var(--cor-marrom);
+}
+
+.nota-destaque {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cor-terracota);
+}
+
+.comentario {
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: var(--space-4);
+  background-color: var(--gray-50);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--cor-bege-rosado);
+}
+
+.filtro-card .form-group {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .resumo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumo-card {
+    padding: var(--space-4);
+  }
+}

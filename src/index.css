@@ -4,68 +4,56 @@
    ======================================== */
 
 :root {
-  /* Cores principais - tons de verde (saúde, alimentação, confiança) */
-  --brand-50: #f0fdf4;
-  --brand-100: #dcfce7;
-  --brand-200: #bbf7d0;
-  --brand-500: #22c55e;
-  --brand-600: #16a34a;
-  --brand-700: #15803d;
-  --brand-800: #14532d;
-  --brand-900: #134e3a;
+  /* Identidade visual - terracota, bege e marrom */
+  --cor-terracota: #A94F3D;
+  --cor-terracota-suave: #C9795C;
+  --cor-bege: #F7EFE7;
+  --cor-branco: #FFFDF9;
+  --cor-marrom: #49352F;
+  --cor-bege-rosado: #E8BFA7;
 
-  /* Cores neutras */
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1e293b;
-  --gray-900: #0f172a;
+  /* Fundos */
+  --bg-body: #F7EFE7;
+  --bg-surface: #FFFDF9;
+  --bg-sidebar: #FFFDF9;
 
-  /* Cores semânticas */
-  --success: #22c55e;
-  --success-bg: #f0fdf4;
-  --warning: #f59e0b;
-  --warning-bg: #fef3c7;
-  --danger: #ef4444;
-  --danger-bg: #fef2f2;
-  --info: #3b82f6;
-  --info-bg: #eff6ff;
+  /* Texto */
+  --text-primary: #49352F;
+  --text-secondary: #6B5B55;
+  --text-muted: #8E7C72;
+  --text-inverse: #FFFDF9;
 
-  /* Cores de superfície */
-  --bg-body: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-sidebar: #ffffff;
+  /* Bordas e foco */
+  --border: #E8BFA7;
+  --border-focus: #A94F3D;
 
-  /* Bordas e texto */
-  --border: #e2e8f0;
-  --border-focus: #22c55e;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
+  /* Semânticas (suaves, alinhadas à paleta) */
+  --success: #A94F3D;
+  --success-bg: #F7EFE7;
+  --warning: #C9795C;
+  --warning-bg: #F3D9C8;
+  --danger: #A94F3D;
+  --danger-bg: #F7EFE7;
+  --info: #C9795C;
+  --info-bg: #F3D9C8;
 
   /* Sombras */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(73 53 47 / 0.06);
+  --shadow: 0 1px 3px 0 rgb(73 53 47 / 0.08), 0 1px 2px -1px rgb(73 53 47 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(73 53 47 / 0.08), 0 2px 4px -2px rgb(73 53 47 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(73 53 47 / 0.08), 0 4px 6px -4px rgb(73 53 47 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(73 53 47 / 0.08), 0 8px 10px -6px rgb(73 53 47 / 0.05);
 
   /* Border radius */
   --radius-sm: 6px;
-  --radius: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
 
   /* Transições */
-  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Tipografia */
@@ -85,18 +73,64 @@
   --space-16: 4rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-body: #0f172a;
-    --bg-surface: #1e293b;
-    --border: #334155;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  }
+/* Variáveis mantidas para retrocompatibilidade com componentes existentes */
+:root {
+  --brand-50: #F7EFE7;
+  --brand-100: #F3D9C8;
+  --brand-200: #E8BFA7;
+  --brand-500: #A94F3D;
+  --brand-600: #8C4033;
+  --brand-700: #6E3328;
+  --brand-800: #49352F;
+  --brand-900: #3A2521;
+
+  --gray-50: #F7EFE7;
+  --gray-100: #EFE5DA;
+  --gray-200: #E0CEC0;
+  --gray-300: #C9B7A9;
+  --gray-400: #A69387;
+  --gray-500: #8E7C72;
+  --gray-600: #6B5B55;
+  --gray-700: #534843;
+  --gray-800: #49352F;
+  --gray-900: #3A2521;
+
+  --success: #A94F3D;
+  --success-bg: #F7EFE7;
+  --warning: #C9795C;
+  --warning-bg: #F3D9C8;
+  --danger: #A94F3D;
+  --danger-bg: #F7EFE7;
+  --info: #C9795C;
+  --info-bg: #F3D9C8;
+
+  --bg-body: #F7EFE7;
+  --bg-surface: #FFFDF9;
+  --bg-sidebar: #FFFDF9;
+
+  --border: #E8BFA7;
+  --border-focus: #A94F3D;
+
+  --text-primary: #49352F;
+  --text-secondary: #6B5B55;
+  --text-muted: #8E7C72;
+  --text-inverse: #FFFDF9;
+
+  --shadow-sm: 0 1px 2px 0 rgb(73 53 47 / 0.06);
+  --shadow: 0 1px 3px 0 rgb(73 53 47 / 0.08), 0 1px 2px -1px rgb(73 53 47 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(73 53 47 / 0.08), 0 2px 4px -2px rgb(73 53 47 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(73 53 47 / 0.08), 0 4px 6px -4px rgb(73 53 47 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(73 53 47 / 0.08), 0 8px 10px -6px rgb(73 53 47 / 0.05);
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reset e base */
@@ -239,8 +273,9 @@ p {
   gap: var(--space-2);
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--cor-marrom);
   letter-spacing: -0.02em;
+  text-decoration: none;
 }
 
 .app-header .logo-icon {
@@ -254,21 +289,22 @@ p {
 }
 
 .app-nav a {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-weight: 600;
   font-size: 0.9375rem;
   padding: var(--space-2) 0;
   position: relative;
   transition: color var(--transition);
+  text-decoration: none;
 }
 
 .app-nav a:hover {
-  color: var(--brand-700);
+  color: var(--cor-terracota);
   text-decoration: none;
 }
 
 .app-nav a.ativo {
-  color: var(--brand-700);
+  color: var(--cor-terracota);
 }
 
 .app-nav a.ativo::after {
@@ -278,7 +314,7 @@ p {
   left: 0;
   right: 0;
   height: 3px;
-  background-color: var(--brand-700);
+  background-color: var(--cor-terracota);
   border-radius: 2px;
 }
 
@@ -293,12 +329,13 @@ p {
   border-radius: var(--radius);
   transition: all var(--transition);
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .perfil-link:hover {
   background-color: var(--gray-100);
-  color: var(--brand-700);
-  border-color: var(--brand-100);
+  color: var(--cor-terracota);
+  border-color: var(--cor-bege-rosado);
   text-decoration: none;
 }
 
@@ -362,8 +399,8 @@ p {
 
 .form-control:focus {
   outline: none;
-  border-color: var(--brand-600);
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 4px rgba(169, 79, 61, 0.1);
 }
 
 .form-control::placeholder {
@@ -410,15 +447,15 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--brand-600);
+  background-color: var(--cor-terracota);
   color: var(--text-inverse);
-  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.25);
+  box-shadow: 0 4px 6px -1px rgba(169, 79, 61, 0.25);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--brand-700);
+  background-color: #8C4033;
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(169, 79, 61, 0.3);
 }
 
 .btn-secondary {
@@ -433,33 +470,33 @@ p {
 
 .btn-outline {
   background-color: transparent;
-  color: var(--brand-700);
-  border: 1px solid var(--brand-200);
+  color: var(--cor-terracota);
+  border: 1px solid var(--cor-bege-rosado);
 }
 
 .btn-outline:hover:not(:disabled) {
   background-color: var(--brand-50);
-  border-color: var(--brand-400);
+  border-color: var(--cor-terracota-suave);
 }
 
 .btn-danger {
-  background-color: var(--danger);
+  background-color: var(--cor-terracota);
   color: var(--text-inverse);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background-color: #dc2626;
+  background-color: #8C4033;
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(169, 79, 61, 0.3);
 }
 
 .btn-success {
-  background-color: var(--success);
+  background-color: var(--cor-terracota);
   color: var(--text-inverse);
 }
 
 .btn-success:hover:not(:disabled) {
-  background-color: var(--brand-700);
+  background-color: #8C4033;
   transform: translateY(-2px);
 }
 
@@ -493,7 +530,7 @@ p {
 
 .btn-icon:hover {
   background-color: var(--gray-100);
-  color: var(--brand-700);
+  color: var(--cor-terracota);
 }
 
 /* ========================================
@@ -517,26 +554,26 @@ p {
 
 .alert-success {
   background-color: var(--success-bg);
-  color: var(--brand-800);
-  border-color: rgba(34, 197, 94, 0.2);
+  color: var(--cor-marrom);
+  border-color: rgba(169, 79, 61, 0.2);
 }
 
 .alert-error {
   background-color: var(--danger-bg);
-  color: #dc2626;
-  border-color: rgba(239, 68, 68, 0.2);
+  color: #8C4033;
+  border-color: rgba(169, 79, 61, 0.2);
 }
 
 .alert-info {
   background-color: var(--info-bg);
-  color: #1e40af;
-  border-color: rgba(59, 130, 246, 0.2);
+  color: #6B5B55;
+  border-color: rgba(201, 191, 167, 0.2);
 }
 
 .alert-warning {
   background-color: var(--warning-bg);
-  color: #92400e;
-  border-color: rgba(245, 158, 11, 0.2);
+  color: #6B5B55;
+  border-color: rgba(201, 191, 167, 0.2);
 }
 
 /* ========================================
@@ -556,19 +593,19 @@ p {
 
 .badge-pending {
   background-color: var(--warning-bg);
-  color: #92400e;
+  color: #6B5B55;
 }
 
 .badge-aceita,
 .badge-accepted {
   background-color: var(--success-bg);
-  color: var(--brand-800);
+  color: var(--cor-marrom);
 }
 
 .badge-recusada,
 .badge-rejected {
   background-color: var(--danger-bg);
-  color: #991b1b;
+  color: #8C4033;
 }
 
 /* ========================================
@@ -652,9 +689,9 @@ p {
 
 .text-muted { color: var(--text-muted); }
 .text-primary { color: var(--text-primary); }
-.text-brand { color: var(--brand-700); }
-.text-success { color: var(--brand-800); }
-.text-danger { color: #dc2626; }
+.text-brand { color: var(--cor-terracota); }
+.text-success { color: var(--cor-marrom); }
+.text-danger { color: #8C4033; }
 
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }

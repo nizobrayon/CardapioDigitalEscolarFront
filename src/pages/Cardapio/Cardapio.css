@@ -8,12 +8,13 @@
 }
 
 .cardapio-page .app-header .logo {
-  color: var(--brand-700);
+  color: var(--cor-marrom);
 }
 
 .titulo-cardapio h1 {
   margin: 0;
   font-size: 1.75rem;
+  color: var(--cor-marrom);
 }
 
 .titulo-cardapio p {
@@ -33,17 +34,22 @@
   align-items: center;
   gap: var(--space-3);
   transition: all var(--transition);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
 }
 
 .card-refeicao:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--brand-200);
+  border-color: var(--cor-bege-rosado);
 }
 
 .informacoes-refeicao h2 {
   margin: 0 0 var(--space-2);
   font-size: 1.125rem;
+  color: var(--cor-marrom);
 }
 
 .descricao {

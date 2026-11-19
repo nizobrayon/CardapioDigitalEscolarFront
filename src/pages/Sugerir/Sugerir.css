@@ -8,5 +8,84 @@
 }
 
 .sugerir-page .app-header .logo {
-  color: var(--brand-700);
+  color: var(--cor-marrom);
+}
+
+.titulo-secao h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--cor-marrom);
+}
+
+.titulo-secao p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.minhas-sugestoes-card {
+  height: fit-content;
+}
+
+.card-minha-sugestao {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: all var(--transition);
+}
+
+.card-minha-sugestao:hover {
+  border-color: var(--cor-bege-rosado);
+}
+
+.sugestao-info {
+  flex: 1;
+}
+
+.sugestao-info h4 {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+  color: var(--cor-marrom);
+}
+
+.sugestao-info p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.excluir-btn {
+  flex-shrink: 0;
+  background-color: var(--brand-50);
+  color: var(--cor-terracota);
+  border: 1px solid var(--cor-bege-rosado);
+}
+
+.excluir-btn:hover:not(:disabled) {
+  background-color: var(--cor-terracota);
+  color: var(--text-inverse);
+}
+
+.excluir-btn:disabled {
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .card-minha-sugestao {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .excluir-btn {
+    align-self: flex-start;
+    width: 100%;
+  }
 }

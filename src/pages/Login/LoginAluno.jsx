@@ -1,5 +1,6 @@
 ﻿import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { setUsuarioLogado } from "../../services/auth";
 import "./Login.css";
 
 function LoginAluno() {
@@ -46,6 +47,7 @@ function LoginAluno() {
         );
       }
 
+      setUsuarioLogado(dados.usuario);
       navigate("/home", {
         state: { usuario: dados.usuario },
       });
