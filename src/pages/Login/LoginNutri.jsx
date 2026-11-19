@@ -33,7 +33,7 @@ function LoginNutri() {
 
       const dados = await resposta.json();
       if (!resposta.ok) {
-        throw new Error(dados.mensagem || "NÃ£o foi possÃ­vel entrar.");
+        throw new Error(dados.mensagem || "Não foi possível entrar.");
       }
 
       setUsuarioLogado(dados.usuario);
@@ -41,7 +41,7 @@ function LoginNutri() {
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"
-          ? "NÃ£o foi possÃ­vel conectar ao servidor."
+          ? "Não foi possível conectar ao servidor."
           : erro.message
       );
     } finally {
@@ -50,65 +50,83 @@ function LoginNutri() {
   }
 
   return (
-    <div className="loginContainer">
-      <div className="login-box">
-        <h1>CardÃ¡pio Digital Escolar</h1>
+    <div className="page login-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
+          <Link to="/loginAluno">Aluno</Link>
+        </nav>
+      </header>
 
-        <p className="login-subtitle">Entre na sua conta</p>
-        <p className="login-subtitle2">NUTRICIONISTA</p>
+      <main className="main-content">
+        <div className="container">
+          <div className="card login-card max-w-md mx-auto">
+            <div className="text-center mb-6">
+              <h1 className="mb-2">Bem-vindo de volta</h1>
+              <p className="text-muted">Entre na sua conta de nutricionista</p>
+            </div>
 
-        <form onSubmit={fazerLogin}>
-          <div className="input-group">
-            <label htmlFor="emailNutri">E-mail</label>
-            <input
-              id="emailNutri"
-              type="email"
-              placeholder="Digite seu e-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </div>
+            {mensagem && (
+              <div className="alert alert-error">{mensagem}</div>
+            )}
 
-          <div className="input-group">
-            <label htmlFor="senhaNutri">Senha</label>
-            <input
-              id="senhaNutri"
-              type="password"
-              placeholder="Digite sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
-          </div>
+            <form onSubmit={fazerLogin} className="form">
+              <div className="form-group">
+                <label htmlFor="emailNutri">E-mail</label>
+                <input
+                  id="emailNutri"
+                  type="email"
+                  className="form-control"
+                  placeholder="Digite seu e-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                />
+              </div>
 
-          {mensagem && (
-            <p className="mensagem-cadastro" role="alert">
-              {mensagem}
+              <div className="form-group">
+                <label htmlFor="senhaNutri">Senha</label>
+                <input
+                  id="senhaNutri"
+                  type="password"
+                  className="form-control"
+                  placeholder="Digite sua senha"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+              </div>
+
+              <div className="btn-group mt-4">
+                <Link to="/loginAluno">
+                  <button type="button" className="btn btn-secondary">Aluno</button>
+                </Link>
+                <Link to="/loginNutri">
+                  <button type="button" className="btn btn-secondary">Nutricionista</button>
+                </Link>
+              </div>
+
+              <button type="submit" className="btn btn-primary btn-full mt-4" disabled={carregando}>
+                {carregando ? "Entrando..." : "Entrar"}
+              </button>
+            </form>
+
+            <p className="cadastro-text text-center mt-6">
+              Ainda não possui uma conta?{" "}
+              <Link to="/cadastro">Cadastre-se</Link>
             </p>
-          )}
-
-          <div className="container">
-            <Link to="/loginAluno">
-              <button type="button">Aluno</button>
-            </Link>
-
-            <Link to="/loginNutri">
-              <button type="button">Nutricionista</button>
-            </Link>
           </div>
+        </div>
+      </main>
 
-          <button type="submit" disabled={carregando}>
-            {carregando ? "Entrando..." : "Entrar"}
-          </button>
-        </form>
-
-        <p className="cadastro-text">
-          Ainda nÃ£o possui uma conta? <Link to="/cadastro">Cadastre-se</Link>
-        </p>
-      </div>
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
+      </footer>
     </div>
   );
 }

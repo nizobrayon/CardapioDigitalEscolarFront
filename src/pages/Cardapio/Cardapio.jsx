@@ -7,11 +7,7 @@ function Cardapio() {
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
 
-  useEffect(() => {
-    buscarRefeicoes();
-  }, []);
-
-  async function buscarRefeicoes() {
+  const buscarRefeicoes = async () => {
     try {
       const resposta = await fetch("http://localhost:3000/refeicoes");
 
@@ -21,12 +17,18 @@ function Cardapio() {
 
       const dados = await resposta.json();
       setRefeicoes(dados);
-    } catch (error) {
+    } catch {
       setErro("Não foi possível carregar as refeições.");
     } finally {
       setCarregando(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    (async () => {
+      await buscarRefeicoes();
+    })();
+  }, []);
 
   async function excluirRefeicao(id) {
     const confirmar = window.confirm(
@@ -47,24 +49,22 @@ function Cardapio() {
         throw new Error("Erro ao excluir refeição");
       }
 
-      // Remove a refeição da tela sem precisar atualizar a página
       setRefeicoes(
         refeicoes.filter((refeicao) => refeicao.id_refeicao !== id)
       );
-    } catch (error) {
+    } catch {
       alert("Erro ao excluir a refeição.");
     }
   }
 
   return (
-    <div className="pagina">
-
-      <header className="cabecalho">
-        <div className="logo">
-        Cardápio Digital Escolar
-        </div>
-
-        <nav>
+    <div className="page cardapio-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
           <Link to="/home">Início</Link>
           <Link to="/cardapio" className="ativo">Cardápio</Link>
           <Link to="/avaliar">Avaliar</Link>
@@ -72,87 +72,80 @@ function Cardapio() {
         </nav>
       </header>
 
-      <main className="conteudo">
-
-        <div className="titulo-cardapio">
-          <div>
-            <h1>Cardápio</h1>
-            <p>Confira as refeições cadastradas.</p>
-          </div>
-
-          <Link to="/criar-refeicao" className="botao-criar">
-            + Criar refeição
-          </Link>
-        </div>
-
-        {carregando && (
-          <p className="mensagem">Carregando refeições...</p>
-        )}
-
-        {erro && (
-          <p className="erro">{erro}</p>
-        )}
-
-        {!carregando && !erro && refeicoes.length === 0 && (
-          <div className="sem-refeicoes">
-            <p>Nenhuma refeição cadastrada.</p>
-
-            <Link to="/criar-refeicao">
-              Cadastrar primeira refeição
+      <main className="main-content">
+        <div className="container">
+          <div className="titulo-cardapio flex items-center justify-between gap-2 mb-6">
+            <div>
+              <h1>Cardápio</h1>
+              <p className="text-muted">Confira as refeições cadastradas.</p>
+            </div>
+            <Link to="/criar-refeicao" className="btn btn-primary">
+              <span>+</span> Criar refeição
             </Link>
           </div>
-        )}
 
-        <div className="lista-refeicoes">
-
-          {refeicoes.map((refeicao) => (
-
-            <div className="card-refeicao" key={refeicao.id_refeicao}>
-
-              <div className="informacoes-refeicao">
-
-                <h2>{refeicao.nomeRefeicao}</h2>
-
-                <p className="descricao">
-                  {refeicao.descricao}
-                </p>
-
-                <span className="categoria">
-                  {refeicao.categoria}
-                </span>
-
-              </div>
-
-              <div className="acoes">
-
-                <Link to={`/gerenciarRefeicao/${refeicao.id_refeicao}`}
-                  className="botao-editar"
-                >
-                  Editar
-                </Link>
-
-                <button
-                  className="botao-excluir"
-                  onClick={() =>
-                    excluirRefeicao(refeicao.id_refeicao)
-                  }
-                >
-                  Excluir
-                </button>
-
-              </div>
-
+          {carregando && (
+            <div className="text-center py-10">
+              <p className="text-muted">Carregando refeições...</p>
             </div>
+          )}
 
-          ))}
+          {erro && (
+            <div className="alert alert-error">{erro}</div>
+          )}
 
+          {!carregando && !erro && refeicoes.length === 0 && (
+            <div className="empty-state sem-refeicoes">
+              <span className="empty-state-icon">🍽️</span>
+              <h3>Nenhuma refeição cadastrada</h3>
+              <p className="text-muted">
+                Comece criando a primeira refeição do cardápio.
+              </p>
+              <Link to="/criar-refeicao" className="btn btn-outline">
+                Cadastrar primeira refeição
+              </Link>
+            </div>
+          )}
+
+          {!carregando && !erro && refeicoes.length > 0 && (
+            <div className="lista-refeicoes">
+              {refeicoes.map((refeicao) => (
+                <div className="card-refeicao card" key={refeicao.id_refeicao}>
+                  <div className="informacoes-refeicao">
+                    <h2>{refeicao.nomeRefeicao}</h2>
+                    <p className="descricao text-muted">
+                      {refeicao.descricao}
+                    </p>
+                    <span className="badge">
+                      {refeicao.categoria}
+                    </span>
+                  </div>
+                  <div className="acoes flex gap-2">
+                    <Link
+                      to={`/gerenciarRefeicao/${refeicao.id_refeicao}`}
+                      className="btn btn-outline btn-sm"
+                    >
+                      Editar
+                    </Link>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() =>
+                        excluirRefeicao(refeicao.id_refeicao)
+                      }
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
       </main>
 
-      <footer>
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
       </footer>
-
     </div>
   );
 }

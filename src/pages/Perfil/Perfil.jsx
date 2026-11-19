@@ -20,8 +20,8 @@ function Perfil() {
   const [editando, setEditando] = useState(false);
 
   useEffect(() => {
-    async function buscarPerfil() {
-      const idUsuario = getIdUsuario(usuarioLogin);
+    (async () => {
+      const idUsuario = getIdUsuario(getUsuarioLogado());
       if (!idUsuario) {
         setMensagem("Não foi possível identificar sua conta. Faça login novamente.");
         setCarregando(false);
@@ -39,28 +39,22 @@ function Perfil() {
         setNome(dados.usuario.nomeusuario || "");
         setEmail(dados.usuario.emailusuario || "");
         setRa(dados.usuario.raaluno || "");
-        const novo = { ...(usuarioLogin || {}), ...dados.usuario };
+        const novo = { ...(getUsuarioLogado() || {}), ...dados.usuario };
         setUsuarioLogin(novo);
         setUsuarioLogado(novo);
-      } catch (erro) {
-        setMensagem(
-          erro.message === "Failed to fetch"
-            ? "Não foi possível conectar ao servidor."
-            : erro.message
-        );
+      } catch {
+        setMensagem("Não foi possível conectar ao servidor.");
       } finally {
         setCarregando(false);
       }
-    }
-
-    buscarPerfil();
+    })();
   }, []);
 
   async function salvarAlteracoes(event) {
     event.preventDefault();
     setMensagem("");
 
-    const idUsuario = getIdUsuario(usuarioLogin);
+    const idUsuario = getIdUsuario(getUsuarioLogado());
     if (!idUsuario) {
       setMensagem("Faça login novamente para alterar seus dados.");
       return;
@@ -86,17 +80,13 @@ function Perfil() {
       setNome(dados.usuario.nomeusuario || "");
       setEmail(dados.usuario.emailusuario || "");
       setRa(dados.usuario.raaluno || "");
-      const novo = { ...(usuarioLogin || {}), ...dados.usuario };
+      const novo = { ...(getUsuarioLogado() || {}), ...dados.usuario };
       setUsuarioLogin(novo);
       setUsuarioLogado(novo);
       setMensagem("Dados atualizados com sucesso!");
       setEditando(false);
-    } catch (erro) {
-      setMensagem(
-        erro.message === "Failed to fetch"
-          ? "Não foi possível conectar ao servidor."
-          : erro.message
-      );
+    } catch {
+      setMensagem("Não foi possível conectar ao servidor.");
     }
   }
 
@@ -107,7 +97,7 @@ function Perfil() {
 
     if (!confirmar) return;
 
-    const idUsuario = getIdUsuario(usuarioLogin);
+    const idUsuario = getIdUsuario(getUsuarioLogado());
     if (!idUsuario) {
       setMensagem("Não foi possível identificar sua conta. Faça login novamente.");
       return;
@@ -127,96 +117,161 @@ function Perfil() {
       clearUsuarioLogado();
       window.alert("Conta excluída com sucesso!");
       navigate("/loginAluno", { replace: true });
-    } catch (erro) {
-      setMensagem(
-        erro.message === "Failed to fetch"
-          ? "Não foi possível conectar ao servidor."
-          : erro.message
-      );
+    } catch {
+      setMensagem("Não foi possível conectar ao servidor.");
     }
   }
 
   if (carregando) {
-    return <div className="perfil-container">Carregando perfil...</div>;
+    return (
+      <div className="page perfil-page">
+        <header className="app-header">
+          <Link to="/" className="logo">
+            <span className="logo-icon">🍽️</span>
+            Cardápio Digital Escolar
+          </Link>
+          <nav className="app-nav">
+            <Link to="/home">Início</Link>
+          </nav>
+        </header>
+        <main className="main-content">
+          <div className="container">
+            <div className="card text-center py-10">
+              <p className="text-muted">Carregando perfil...</p>
+            </div>
+          </div>
+        </main>
+        <footer className="app-footer">
+          Cardápio Digital Escolar © 2026
+        </footer>
+      </div>
+    );
   }
 
   return (
-    <div className="perfil-container">
-      <div className="perfil-card">
-        <h1>Meu Perfil</h1>
-        <p>Consulte e altere seus dados pessoais.</p>
+    <div className="page perfil-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
+          <Link to="/home">Início</Link>
+        </nav>
+      </header>
 
-        {mensagem && <p role="status">{mensagem}</p>}
+      <main className="main-content">
+        <div className="container">
+          <div className="card max-w-md mx-auto">
+            <div className="text-center mb-6">
+              <div className="perfil-avatar">👤</div>
+              <h1 className="mb-1">Meu Perfil</h1>
+              <p className="text-muted">Consulte e altere seus dados pessoais.</p>
+            </div>
 
-        <form onSubmit={salvarAlteracoes}>
-          <label htmlFor="nome">Nome completo</label>
-          <input
-            id="nome"
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            disabled={!editando}
-            required
-          />
+            {mensagem && (
+              <div className={`alert ${mensagem.includes("sucesso") ? "alert-success" : "alert-error"}`}>
+                {mensagem}
+              </div>
+            )}
 
-          <label htmlFor="email">E-mail</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={!editando}
-            required
-          />
+            <form onSubmit={salvarAlteracoes} className="form">
+              <div className="form-group">
+                <label htmlFor="nome">Nome completo</label>
+                <input
+                  id="nome"
+                  type="text"
+                  className="form-control"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  disabled={!editando}
+                  required
+                />
+              </div>
 
-          <label htmlFor="ra">RA do aluno</label>
-          <input
-            id="ra"
-            type="text"
-            value={ra}
-            onChange={(e) => setRa(e.target.value)}
-            disabled={!editando}
-            required
-          />
+              <div className="form-group">
+                <label htmlFor="email">E-mail</label>
+                <input
+                  id="email"
+                  type="email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={!editando}
+                  required
+                />
+              </div>
 
-          {!editando ? (
-            <button
-              type="button"
-              onClick={() => {
-                setMensagem("");
-                setEditando(true);
-              }}
-            >
-              Editar dados
-            </button>
-          ) : (
-            <>
-              <button type="submit">Salvar alterações</button>
+              <div className="form-group">
+                <label htmlFor="ra">RA do aluno</label>
+                <input
+                  id="ra"
+                  type="text"
+                  className="form-control"
+                  value={ra}
+                  onChange={(e) => setRa(e.target.value)}
+                  disabled={!editando}
+                  required
+                />
+              </div>
 
+              {!editando ? (
+                <button
+                  type="button"
+                  className="btn btn-outline btn-full"
+                  onClick={() => {
+                    setMensagem("");
+                    setEditando(true);
+                  }}
+                >
+                  Editar dados
+                </button>
+              ) : (
+                <>
+                  <button type="submit" className="btn btn-primary btn-full">
+                    Salvar alterações
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-full mt-3"
+                    onClick={() => {
+                      setNome(usuarioLogin?.nomeusuario || nome);
+                      setEmail(usuarioLogin?.emailusuario || email);
+                      setRa(usuarioLogin?.raaluno || ra);
+                      setMensagem("");
+                      setEditando(false);
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                </>
+              )}
+            </form>
+
+            <div className="perfil-excluir mt-8 pt-6 border-t">
+              <h3 className="text-danger">Excluir minha conta</h3>
+              <p className="text-muted text-sm">
+                Essa ação não poderá ser desfeita.
+              </p>
               <button
                 type="button"
-                onClick={() => {
-                  setNome(usuarioLogin?.nomeusuario || nome);
-                  setEmail(usuarioLogin?.emailusuario || email);
-                  setRa(usuarioLogin?.raaluno || ra);
-                  setMensagem("");
-                  setEditando(false);
-                }}
+                className="btn btn-danger btn-full mt-3"
+                onClick={excluirConta}
               >
-                Cancelar
+                Excluir conta
               </button>
-            </>
-          )}
-        </form>
+            </div>
 
-        <button type="button" className="botao-excluir" onClick={excluirConta}>
-          Excluir minha conta
-        </button>
+            <Link to="/home" className="btn btn-outline btn-full mt-6">
+              Voltar para o início
+            </Link>
+          </div>
+        </div>
+      </main>
 
-        <Link to="/home" className="voltar-home">
-          Voltar para o início
-        </Link>
-      </div>
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
+      </footer>
     </div>
   );
 }

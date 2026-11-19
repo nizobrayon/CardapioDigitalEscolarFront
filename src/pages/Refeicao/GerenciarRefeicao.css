@@ -1,0 +1,41 @@
+/* ========================================
+   CRIAR E GERENCIAR REFEIÇÃO
+   ======================================== */
+
+.criar-refeicao-page,
+.gerenciar-refeicao-page {
+  min-height: 100svh;
+  background-color: var(--bg-body);
+}
+
+.criar-refeicao-page .app-header .logo,
+.gerenciar-refeicao-page .app-header .logo {
+  color: var(--brand-700);
+}
+
+.botoes {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.cancelar {
+  background-color: var(--gray-100);
+  color: var(--text-primary);
+}
+
+.cancelar:hover:not(:disabled) {
+  background-color: var(--gray-200);
+  transform: translateY(-2px);
+}
+
+.salvar {
+  background-color: var(--brand-600);
+  color: var(--text-inverse);
+  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.25);
+}
+
+.salvar:hover:not(:disabled) {
+  background-color: var(--brand-700);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3);
+}

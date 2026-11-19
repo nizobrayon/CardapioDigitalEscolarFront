@@ -1,6 +1,5 @@
 ﻿import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { setUsuarioLogado } from "../../services/auth";
 import "./Login.css";
 
 function LoginAluno() {
@@ -43,15 +42,17 @@ function LoginAluno() {
 
       if (!resposta.ok) {
         throw new Error(
-          dados.mensagem || "NÃ£o foi possÃ­vel entrar."
+          dados.mensagem || "Não foi possível entrar."
         );
       }
-      setUsuarioLogado(dados.usuario);
-      navigate("/home");
+
+      navigate("/home", {
+        state: { usuario: dados.usuario },
+      });
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"
-          ? "NÃ£o foi possÃ­vel conectar ao servidor."
+          ? "Não foi possível conectar ao servidor."
           : erro.message
       );
     } finally {
@@ -60,85 +61,99 @@ function LoginAluno() {
   }
 
   return (
-    <div className="loginContainer">
-      <div className="login-box">
-        <h1>CardÃ¡pio Digital Escolar</h1>
+    <div className="page login-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
+          <Link to="/loginNutri">Nutricionista</Link>
+        </nav>
+      </header>
 
-        <p className="login-subtitle">
-          Entre na sua conta
-        </p>
+      <main className="main-content">
+        <div className="container">
+          <div className="card login-card max-w-md mx-auto">
+            <div className="text-center mb-6">
+              <h1 className="mb-2">Bem-vindo de volta</h1>
+              <p className="text-muted">Entre na sua conta de aluno</p>
+            </div>
 
-        <p className="login-subtitle2">ALUNO</p>
+            {mensagem && (
+              <div className="alert alert-error">{mensagem}</div>
+            )}
 
-        <form onSubmit={fazerLogin}>
-          <div className="input-group">
-            <label htmlFor="email">E-mail</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Digite seu e-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </div>
+            <form onSubmit={fazerLogin} className="form">
+              <div className="form-group">
+                <label htmlFor="email">E-mail</label>
+                <input
+                  id="email"
+                  type="email"
+                  className="form-control"
+                  placeholder="Digite seu e-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                />
+              </div>
 
-          <div className="input-group">
-            <label htmlFor="raAluno">RA do Aluno</label>
-            <input
-              id="raAluno"
-              type="text"
-              inputMode="numeric"
-              placeholder="Digite seu RA"
-              value={raAluno}
-              onChange={(e) => setRaAluno(e.target.value)}
-              required
-            />
-          </div>
+              <div className="form-group">
+                <label htmlFor="raAluno">RA do Aluno</label>
+                <input
+                  id="raAluno"
+                  type="text"
+                  inputMode="numeric"
+                  className="form-control"
+                  placeholder="Digite seu RA"
+                  value={raAluno}
+                  onChange={(e) => setRaAluno(e.target.value)}
+                  required
+                />
+              </div>
 
-          <div className="input-group">
-            <label htmlFor="senha">Senha</label>
-            <input
-              id="senha"
-              type="password"
-              placeholder="Digite sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
-          </div>
+              <div className="form-group">
+                <label htmlFor="senha">Senha</label>
+                <input
+                  id="senha"
+                  type="password"
+                  className="form-control"
+                  placeholder="Digite sua senha"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+              </div>
 
-          {mensagem && (
-            <p className="mensagem-cadastro" role="alert">
-              {mensagem}
+              <div className="btn-group mt-4">
+                <Link to="/loginAluno">
+                  <button type="button" className="btn btn-secondary">Aluno</button>
+                </Link>
+                <Link to="/loginNutri">
+                  <button type="button" className="btn btn-secondary">Nutricionista</button>
+                </Link>
+              </div>
+
+              <button type="submit" className="btn btn-primary btn-full mt-4" disabled={carregando}>
+                {carregando ? "Entrando..." : "Entrar"}
+              </button>
+            </form>
+
+            <p className="cadastro-text text-center mt-6">
+              Ainda não possui uma conta?{" "}
+              <Link to="/cadastro">Cadastre-se</Link>
             </p>
-          )}
-
-          <div className="container">
-            <Link to="/loginaluno">
-              <button type="button">Aluno</button>
-            </Link>
-
-            <Link to="/loginNutri">
-              <button type="button">Nutricionista</button>
-            </Link>
           </div>
+        </div>
+      </main>
 
-          <button type="submit" disabled={carregando}>
-            {carregando ? "Entrando..." : "Entrar"}
-          </button>
-        </form>
-
-        <p className="cadastro-text">
-          Ainda nÃ£o possui uma conta?{" "}
-          <Link to="/cadastro">Cadastre-se</Link>
-        </p>
-      </div>
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
+      </footer>
     </div>
   );
 }
 
 export default LoginAluno;
-

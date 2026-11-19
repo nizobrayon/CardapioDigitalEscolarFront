@@ -1,10 +1,10 @@
 ﻿import { useState } from "react";
-import { Link } from "react-router-dom";
-import { getIdUsuario, getUsuarioLogado } from "../../services/auth";
+import { Link, useLocation } from "react-router-dom";
 import "./Sugerir.css";
 
 function Sugerir() {
-  const [usuario] = useState(() => getUsuarioLogado());
+  const location = useLocation();
+  const usuario = location.state?.usuario;
   const [nomePrato, setNomePrato] = useState("");
   const [descricao, setDescricao] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -14,7 +14,7 @@ function Sugerir() {
     event.preventDefault();
     setMensagem("");
 
-    const idUsuario = getIdUsuario(usuario);
+    const idUsuario = usuario?.idusuario || usuario?.idUsuario;
     if (!idUsuario) {
       setMensagem("Faça login como aluno para enviar sugestão.");
       return;
@@ -47,76 +47,82 @@ function Sugerir() {
     }
   }
 
-  const idUsuario = getIdUsuario(usuario);
-
   return (
-    <div className="tela-sugerir">
-      <header className="sugerir-cabecalho">
-        <h1>Cardápio Digital Escolar</h1>
-
-        <nav>
-          <Link to="/home">Início</Link>
+    <div className="page sugerir-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
+          <Link to="/">Início</Link>
           <Link to="/cardapio">Cardápio</Link>
-          <Link to="/avaliar">Avaliar</Link>
-          <Link to="/sugerir">Sugerir</Link>
         </nav>
       </header>
 
-      <main className="sugerir-container">
-        <h2>Sugerir Refeição</h2>
+      <main className="main-content">
+        <div className="container">
+          <div className="card max-w-md mx-auto">
+            <div className="text-center mb-6">
+              <h1 className="mb-2">Sugerir Refeição</h1>
+              <p className="text-muted">
+                Tem uma ideia de prato para o cardápio escolar?
+                Compartilhe sua sugestão conosco!
+              </p>
+            </div>
 
-        <p className="sugerir-texto">
-          Tem uma ideia de prato para o cardápio escolar? Compartilhe sua sugestão conosco!
-        </p>
+            {mensagem && (
+              <div className={`alert ${mensagem.includes("sucesso") ? "alert-success" : "alert-error"}`}>
+                {mensagem}
+              </div>
+            )}
 
-        {!idUsuario && (
-          <p className="sugerir-texto">
-            Você precisa estar logado como aluno para enviar uma sugestão.{" "}
-            <Link to="/loginAluno">Entrar</Link>
-          </p>
-        )}
+            <form onSubmit={handleEnviar} className="form">
+              <div className="form-group">
+                <label htmlFor="nomePrato">Nome do prato sugerido</label>
+                <input
+                  type="text"
+                  id="nomePrato"
+                  className="form-control"
+                  value={nomePrato}
+                  onChange={(event) => setNomePrato(event.target.value)}
+                  placeholder="Ex.: Macarrão à bolonhesa"
+                  required
+                />
+              </div>
 
-        <form onSubmit={handleEnviar}>
-          <div className="sugerir-campo">
-            <label htmlFor="nomePrato">Nome do prato sugerido</label>
+              <div className="form-group">
+                <label htmlFor="descricao">Descrição breve do prato</label>
+                <textarea
+                  id="descricao"
+                  className="form-control"
+                  value={descricao}
+                  onChange={(event) => setDescricao(event.target.value)}
+                  placeholder="Conte quais ingredientes o prato teria..."
+                  rows="4"
+                  maxLength={300}
+                  required
+                />
+                <span className="form-text">
+                  {descricao.length}/300 caracteres
+                </span>
+              </div>
 
-            <input
-              type="text"
-              id="nomePrato"
-              value={nomePrato}
-              onChange={(event) => setNomePrato(event.target.value)}
-              placeholder="Ex.: Macarrão à bolonhesa"
-              required
-            />
+              <button type="submit" className="btn btn-primary btn-full" disabled={carregando}>
+                {carregando ? "Enviando..." : "Enviar Sugestão"}
+              </button>
+            </form>
+
+            <Link to="/cardapio" className="btn btn-outline btn-full mt-4">
+              Voltar para o cardápio
+            </Link>
           </div>
-
-          <div className="sugerir-campo">
-            <label htmlFor="descricao">Descrição breve do prato</label>
-
-            <textarea
-              id="descricao"
-              value={descricao}
-              onChange={(event) => setDescricao(event.target.value)}
-              placeholder="Conte quais ingredientes o prato teria..."
-              rows="4"
-              maxLength={300}
-              required
-            />
-
-            <small>{descricao.length}/300 caracteres</small>
-          </div>
-
-          <button type="submit" className="botao-sugerir" disabled={carregando}>
-            {carregando ? "Enviando..." : "Enviar Sugestão"}
-          </button>
-
-          {mensagem && <p className="sugerir-texto">{mensagem}</p>}
-
-          <Link to="/cardapio" className="sugerir-voltar">
-            Voltar para o cardápio
-          </Link>
-        </form>
+        </div>
       </main>
+
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
+      </footer>
     </div>
   );
 }

@@ -1,208 +1,85 @@
-* {
-  box-sizing: border-box;
+/* ========================================
+   CARDÁPIO - LISTA DE REFEIÇÕES
+   ======================================== */
+
+.cardapio-page {
+  min-height: 100svh;
+  background-color: var(--bg-body);
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f5;
-}
-
-.pagina {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* CABEÇALHO */
-
-.cabecalho {
-  height: 70px;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 60px;
-  border-bottom: 1px solid #eeeeee;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #286b3d;
-}
-
-.cabecalho nav {
-  display: flex;
-  gap: 30px;
-}
-
-.cabecalho nav a {
-  text-decoration: none;
-  color: #555;
-  font-size: 16px;
-}
-
-.cabecalho nav a:hover {
-  color: #286b3d;
-}
-
-.cabecalho nav .ativo {
-  color: #286b3d;
-  font-weight: bold;
-}
-
-/* CONTEÚDO */
-
-.conteudo {
-  flex: 1;
-  padding: 50px 80px;
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.titulo-cardapio {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 35px;
+.cardapio-page .app-header .logo {
+  color: var(--brand-700);
 }
 
 .titulo-cardapio h1 {
   margin: 0;
-  color: #286b3d;
-  font-size: 32px;
+  font-size: 1.75rem;
 }
 
 .titulo-cardapio p {
-  margin-top: 8px;
-  color: #666;
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
 }
-
-/* BOTÃO CRIAR */
-
-.botao-criar {
-  background-color: #286b3d;
-  color: white;
-  text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-.botao-criar:hover {
-  background-color: #1f5430;
-}
-
-/* CARDS */
 
 .lista-refeicoes {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--space-3);
 }
 
 .card-refeicao {
-  background-color: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-3);
+  transition: all var(--transition);
+}
+
+.card-refeicao:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand-200);
 }
 
 .informacoes-refeicao h2 {
-  margin: 0 0 8px;
-  color: #333;
-  font-size: 21px;
+  margin: 0 0 var(--space-2);
+  font-size: 1.125rem;
 }
 
 .descricao {
-  margin: 0 0 12px;
-  color: #666;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
-
-.categoria {
-  display: inline-block;
-  background-color: #e8f3eb;
-  color: #286b3d;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* BOTÕES */
 
 .acoes {
   display: flex;
-  gap: 10px;
-  margin-left: 20px;
-}
-
-.botao-editar,
-.botao-excluir {
-  border: none;
-  padding: 9px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.botao-editar {
-  background-color: #286b3d;
-  color: white;
-}
-
-.botao-excluir {
-  background-color: #d9534f;
-  color: white;
-}
-
-.botao-editar:hover {
-  background-color: #1f5430;
-}
-
-.botao-excluir:hover {
-  background-color: #b52b27;
-}
-
-/* MENSAGENS */
-
-.mensagem {
-  color: #666;
-}
-
-.erro {
-  color: #d9534f;
+  gap: var(--space-2);
+  flex-shrink: 0;
 }
 
 .sem-refeicoes {
   text-align: center;
-  padding: 50px;
-  background-color: white;
-  border: 1px solid #eee;
-  border-radius: 8px;
 }
 
 .sem-refeicoes p {
-  color: #666;
+  margin-bottom: 0;
 }
 
-.sem-refeicoes a {
-  color: #286b3d;
-  font-weight: bold;
-}
+@media (max-width: 640px) {
+  .card-refeicao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
 
-/* RODAPÉ */
+  .acoes {
+    width: 100%;
+    justify-content: flex-start;
+  }
 
-footer {
-  background-color: #286b3d;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  margin-top: auto;
+  .btn-sm {
+    width: 100%;
+  }
 }

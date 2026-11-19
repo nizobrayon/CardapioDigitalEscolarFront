@@ -1,129 +1,102 @@
-* {
-  box-sizing: border-box;
-}
+/* ========================================
+   LOGIN & CADASTRO - PÁGINAS DE AUTENTICAÇÃO
+   ======================================== */
 
-.loginContainer {
-  min-height: 100vh;
-  width: 100%;
+.login-page,
+.cadastro-page {
+  min-height: 100svh;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #f8fafc;
+  justify-content: center;
 }
 
-.login-box {
-  width: 500px;
-  padding: 25px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+.login-page .app-header,
+.cadastro-page .app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: none;
+  box-shadow: none;
+  padding: 1.5rem var(--space-6);
 }
 
-.login-box h1 {
-  text-align: center;
-  color: #166534;
-  margin-bottom: 8px;
+.login-page .app-header .logo,
+.cadastro-page .app-header .logo {
+  color: var(--brand-700);
 }
 
-.login-subtitle {
-  text-align: center;
-  color: #64748b;
-  margin-bottom: 10px;
+.login-page .app-nav a,
+.cadastro-page .app-nav a {
+  color: var(--text-muted);
 }
 
-.login-subtitle2 {
-   text-align: center;
-   color: #000000;
-   margin-bottom: 20px;
-   font-weight: bold;
-   font-size: 24px
-} 
-
-.login-subtitle-cadastro {
-  text-align: center;
-  color: #000000;
-  margin-bottom: 10px;
-  font-size: 24px;
-  font-weight: bold;
+.login-page .app-nav a:hover,
+.cadastro-page .app-nav a:hover {
+  color: var(--brand-700);
 }
 
-.input-group {
-   margin-bottom: 20px;
+.login-page .main-content,
+.cadastro-page .main-content {
+  padding: 0;
 }
 
-.input-group label {
-  display: block;
-   margin-bottom: 10px;
-   color: #1e293b;
-   font-weight: bold;
+.login-card,
+.card.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
 }
 
-.input-group input {
-   width: 100%;
-   padding: 12px;
-   border: 1px solid #cbd5e1;
-   border-radius: 6px;
-   font-size: 15px;
-   outline: none;
-}
-
-.input-group input:focus {
-   border-color: #16a34a;
-}
-
-.login-box button {
-   width: 100%;
-   padding: 12px;
-   border: none;
-   border-radius: 6px;
-   background-color: #16a34a;
-   color: white;
-   font-size: 17px;
-}
-
-.login-box button:hover {
-   background-color: #166534;
+.login-card h1 {
+  font-size: 1.875rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
 }
 
 .cadastro-text {
-   text-align: center;
-   margin-top: 25px;
-   color: #64748b;
-   font-size: 14px;
+  text-align: center;
+  margin-top: var(--space-6);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
 }
 
 .cadastro-text a {
-   color: #2563eb;
-   font-weight: bold;
-   text-decoration: none;
+  color: var(--brand-700);
+  font-weight: 700;
 }
 
 .cadastro-text a:hover {
-   text-decoration: underline;
+  text-decoration: underline;
+  color: var(--brand-600);
 }
 
-.container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+.mensagem-cadastro {
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: var(--space-4);
 }
 
-.container button {
-  flex: 1;
-  justify-content: center;
-  width: 150px;
-  height: 45px;
-  background-color: #2563eb;
-  justify-content: center;
-  width: 218px
-}
+@media (max-width: 480px) {
+  .login-card,
+  .card.login-card {
+    padding: var(--space-6) var(--space-4);
+    margin: 0 var(--space-4);
+  }
 
-.container button:hover {
-  background-color: #19429b;
-}
+  .btn-group {
+    flex-direction: column;
+  }
 
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+  .btn-group > * {
+    width: 100%;
+  }
 }

@@ -1,62 +1,12 @@
+/* ========================================
+   CRIAR REFEIÇÃO
+   ======================================== */
 
-.criar-refeicao {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 25px;
-  font-family: Arial, sans-serif;
+.criar-refeicao-page {
+  min-height: 100svh;
+  background-color: var(--bg-body);
 }
 
-.criar-refeicao h1 {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.criar-refeicao form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.criar-refeicao label {
-  font-weight: bold;
-}
-
-.criar-refeicao input,
-.criar-refeicao textarea,
-.criar-refeicao select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.criar-refeicao textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.criar-refeicao button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2e7d32;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.criar-refeicao button:hover {
-  background-color: #256428;
-}
-
-.criar-refeicao a {
-  display: block;
-  margin-top: 15px;
-  text-align: center;
-  color: #2e7d32;
-  text-decoration: none;
+.criar-refeicao-page .app-header .logo {
+  color: var(--brand-700);
 }

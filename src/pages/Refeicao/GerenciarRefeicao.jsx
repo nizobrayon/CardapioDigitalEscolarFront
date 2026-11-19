@@ -1,75 +1,61 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import "./CriarRefeicao.css";
+import "./GerenciarRefeicao.css";
 
 function GerenciarRefeicao() {
-
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [nomeRefeicao, setNomeRefeicao] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [carregando, setCarregando] = useState(true);
+  const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
+    const buscarRefeicao = async () => {
+      try {
+        const resposta = await fetch(
+          `http://localhost:3000/refeicoes/${id}`
+        );
+
+        if (!resposta.ok) {
+          throw new Error("Erro ao buscar refeição");
+        }
+
+        const dados = await resposta.json();
+
+        setNomeRefeicao(
+          dados.nomeRefeicao || dados.nomerefeicao || ""
+        );
+        setDescricao(dados.descricao || "");
+        setCategoria(dados.categoria || "");
+      } catch {
+        setMensagem("Erro ao carregar refeição.");
+      } finally {
+        setCarregando(false);
+      }
+    };
+
     buscarRefeicao();
   }, [id]);
 
-  async function buscarRefeicao() {
-    try {
-
-      const resposta = await fetch(
-        `http://localhost:3000/refeicoes/${id}`
-      );
-
-      if (!resposta.ok) {
-        throw new Error("Erro ao buscar refeição");
-      }
-
-      const dados = await resposta.json();
-
-      console.log("Refeição recebida:", dados);
-
-      setNomeRefeicao(
-        dados.nomeRefeicao || dados.nomerefeicao || ""
-      );
-
-      setDescricao(
-        dados.descricao || ""
-      );
-
-      setCategoria(
-        dados.categoria || ""
-      );
-
-    } catch (error) {
-
-      console.error(error);
-      alert("Erro ao carregar refeição.");
-
-    }
-  }
-
   async function salvarAlteracoes(e) {
-
     e.preventDefault();
 
     try {
-
       const resposta = await fetch(
         `http://localhost:3000/refeicoes/${id}`,
         {
           method: "PUT",
-
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             nomeRefeicao,
             descricao,
-            categoria
-          })
+            categoria,
+          }),
         }
       );
 
@@ -77,127 +63,121 @@ function GerenciarRefeicao() {
         throw new Error("Erro ao atualizar");
       }
 
-      alert("Refeição atualizada com sucesso!");
-
-      navigate("/cardapio");
-
-    } catch (error) {
-
-      console.error(error);
-      alert("Erro ao atualizar refeição.");
-
+      setMensagem("Refeição atualizada com sucesso!");
+    } catch {
+      setMensagem("Erro ao atualizar refeição.");
     }
   }
 
+  if (carregando) {
+    return (
+      <div className="page gerenciar-refeicao-page">
+        <header className="app-header">
+          <Link to="/" className="logo">
+            <span className="logo-icon">🍽️</span>
+            Cardápio Digital Escolar
+          </Link>
+          <nav className="app-nav">
+            <Link to="/cardapio">Cardápio</Link>
+          </nav>
+        </header>
+        <main className="main-content">
+          <div className="container">
+            <div className="card text-center py-10">
+              <p className="text-muted">Carregando refeição...</p>
+            </div>
+          </div>
+        </main>
+        <footer className="app-footer">
+          Cardápio Digital Escolar © 2026
+        </footer>
+      </div>
+    );
+  }
+
   return (
-    <div className="pagina-gerenciar">
-
-      <header className="cabecalho">
-
-        <div className="logo">
-          🍽️ Cantina Escola
-        </div>
-
-        <nav>
-
-          <Link to="/">
-            Início
-          </Link>
-
-          <Link to="/cardapio">
-            Cardápio
-          </Link>
-
-          <Link to="/avaliar">
-            Avaliar
-          </Link>
-
-          <Link to="/sugerir">
-            Sugerir
-          </Link>
-
+    <div className="page gerenciar-refeicao-page">
+      <header className="app-header">
+        <Link to="/" className="logo">
+          <span className="logo-icon">🍽️</span>
+          Cardápio Digital Escolar
+        </Link>
+        <nav className="app-nav">
+          <Link to="/cardapio">Cardápio</Link>
         </nav>
-
       </header>
 
+      <main className="main-content">
+        <div className="container">
+          <div className="card max-w-md mx-auto">
+            <div className="text-center mb-6">
+              <h1 className="mb-2">Gerenciar refeição</h1>
+              <p className="text-muted">Edite as informações da refeição.</p>
+            </div>
 
-      <main className="gerenciar">
+            {mensagem && (
+              <div className={`alert ${mensagem.includes("sucesso") ? "alert-success" : "alert-error"}`}>
+                {mensagem}
+              </div>
+            )}
 
-        <h1>Gerenciar refeição</h1>
+            <form onSubmit={salvarAlteracoes} className="form">
+              <div className="form-group">
+                <label>Nome da refeição</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={nomeRefeicao}
+                  onChange={(e) => setNomeRefeicao(e.target.value)}
+                  required
+                />
+              </div>
 
-        <p>
-          Edite as informações da refeição.
-        </p>
+              <div className="form-group">
+                <label>Descrição</label>
+                <textarea
+                  className="form-control"
+                  value={descricao}
+                  onChange={(e) => setDescricao(e.target.value)}
+                  rows="4"
+                  required
+                />
+              </div>
 
+              <div className="form-group">
+                <label>Categoria</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={categoria}
+                  onChange={(e) => setCategoria(e.target.value)}
+                  required
+                />
+              </div>
 
-        <form onSubmit={salvarAlteracoes}>
-
-          <label>
-            Nome da refeição
-          </label>
-
-          <input
-            type="text"
-            value={nomeRefeicao}
-            onChange={(e) =>
-              setNomeRefeicao(e.target.value)
-            }
-          />
-
-
-          <label>
-            Descrição
-          </label>
-
-          <textarea
-            value={descricao}
-            onChange={(e) =>
-              setDescricao(e.target.value)
-            }
-          />
-
-
-          <label>
-            Categoria
-          </label>
-
-          <input
-            type="text"
-            value={categoria}
-            onChange={(e) =>
-              setCategoria(e.target.value)
-            }
-          />
-
-
-          <div className="botoes">
-
-            <button
-              type="button"
-              className="cancelar"
-              onClick={() => navigate("/cardapio")}
-            >
-              Cancelar
-            </button>
-
-            <button
-              type="submit"
-              className="salvar"
-            >
-              Salvar alterações
-            </button>
-
+              <div className="botoes flex gap-2 mt-6">
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-full cancelar"
+                  onClick={() => navigate("/cardapio")}
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-full salvar"
+                >
+                  Salvar alterações
+                </button>
+              </div>
+            </form>
           </div>
-
-        </form>
-
+        </div>
       </main>
 
-
-      <footer>
-        © 2026 Cantina Escola - Cardápio Escolar Digital
+      <footer className="app-footer">
+        Cardápio Digital Escolar © 2026
       </footer>
-
     </div>
   );
 }
