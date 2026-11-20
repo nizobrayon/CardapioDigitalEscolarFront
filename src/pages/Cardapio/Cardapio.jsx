@@ -75,6 +75,9 @@ function Cardapio() {
           {tipoUsuario === "nutricionista" ? (
             <>
               <Link to="/criar-refeicao">Criar refeição</Link>
+              <Link to="/gerenciar-refeicoes" className="ativo">
+                Gerenciar refeições
+              </Link>
               <Link to="/avaliacoes-alunos">Avaliações</Link>
               <Link to="/sugestoes-alunos">Sugestões</Link>
               <Link to="/perfil">Perfil</Link>
@@ -125,7 +128,7 @@ function Cardapio() {
               {refeicoes.map((refeicao) => (
                 <div className="card-refeicao card" key={refeicao.id_refeicao}>
                   <div className="informacoes-refeicao">
-                    <h2>{refeicao.nomeRefeicao}</h2>
+                    <h2>{refeicao.nomeRefeicao || refeicao.nomerefeicao || "Sem nome"}</h2>
                     <p className="descricao text-muted">
                       {refeicao.descricao}
                     </p>

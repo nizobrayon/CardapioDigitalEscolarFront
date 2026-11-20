@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Cardapio from "./pages/Cardapio/Cardapio";
 import CriarRefeicao from "./pages/Refeicao/CriarRefeicao";
 import GerenciarRefeicoes from "./pages/Refeicao/GerenciarRefeicao";
+import ListaRefeicoes from "./pages/Refeicao/ListaRefeicoes";
 import Perfil from "./pages/Perfil/Perfil";
 import Avaliar from "./pages/Avaliar/Avaliar";
 import Sugerir from "./pages/Sugerir/Sugerir";
@@ -105,6 +106,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["nutricionista"]}>
               <GerenciarRefeicoes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/gerenciar-refeicoes"
+          element={
+            <ProtectedRoute allowedRoles={["nutricionista"]}>
+              <ListaRefeicoes />
             </ProtectedRoute>
           }
         />

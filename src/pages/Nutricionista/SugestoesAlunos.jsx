@@ -60,11 +60,12 @@ function SugestoesAlunos() {
           <span className="logo-icon">🍽️</span>
           Cardápio Digital Escolar
         </Link>
-        <nav className="app-nav">
-          <Link to="/criar-refeicao">Criar refeição</Link>
-          <Link to="/avaliacoes-alunos">Avaliações</Link>
-          <Link to="/sugestoes-alunos" className="ativo">Sugestões</Link>
-        </nav>
+          <nav className="app-nav">
+            <Link to="/criar-refeicao">Criar refeição</Link>
+            <Link to="/gerenciar-refeicoes">Gerenciar refeições</Link>
+            <Link to="/avaliacoes-alunos">Avaliações</Link>
+            <Link to="/sugestoes-alunos" className="ativo">Sugestões</Link>
+          </nav>
       </header>
 
       <main className="main-content">

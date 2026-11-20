@@ -165,6 +165,7 @@ function Perfil() {
           {tipoUsuario === "nutricionista" ? (
             <>
               <Link to="/criar-refeicao">Criar refeição</Link>
+              <Link to="/gerenciar-refeicoes">Gerenciar refeições</Link>
               <Link to="/avaliacoes-alunos">Avaliações</Link>
               <Link to="/sugestoes-alunos">Sugestões</Link>
             </>

@@ -69,6 +69,32 @@ function GerenciarRefeicao() {
     }
   }
 
+  async function excluirRefeicao() {
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir esta refeição? Essa ação não poderá ser desfeita."
+    );
+
+    if (!confirmar) return;
+
+    try {
+      const resposta = await fetch(
+        `http://localhost:3000/refeicoes/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao excluir refeição");
+      }
+
+      window.alert("Refeição excluída com sucesso!");
+      navigate("/cardapio", { replace: true });
+    } catch {
+      setMensagem("Erro ao excluir refeição.");
+    }
+  }
+
   if (carregando) {
     return (
       <div className="page gerenciar-refeicao-page">
@@ -79,6 +105,7 @@ function GerenciarRefeicao() {
           </Link>
           <nav className="app-nav">
             <Link to="/cardapio">Cardápio</Link>
+            <Link to="/gerenciar-refeicoes">Gerenciar refeições</Link>
             <Link to="/avaliacoes-alunos">Avaliações</Link>
             <Link to="/sugestoes-alunos">Sugestões</Link>
             <Link to="/perfil">Perfil</Link>
@@ -107,6 +134,7 @@ function GerenciarRefeicao() {
         </Link>
         <nav className="app-nav">
           <Link to="/cardapio">Cardápio</Link>
+          <Link to="/gerenciar-refeicoes">Gerenciar refeições</Link>
         </nav>
       </header>
 
@@ -165,6 +193,13 @@ function GerenciarRefeicao() {
                   onClick={() => navigate("/cardapio")}
                 >
                   Cancelar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger btn-full excluir"
+                  onClick={excluirRefeicao}
+                >
+                  Excluir refeição
                 </button>
                 <button
                   type="submit"
