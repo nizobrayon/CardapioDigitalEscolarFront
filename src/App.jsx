@@ -15,6 +15,15 @@ import SugestoesAlunos from "./pages/Nutricionista/SugestoesAlunos";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { isAuthenticated, getTipoUsuario } from "./services/auth";
 
+function RedirecionarInicio() {
+  if (!isAuthenticated()) {
+    return <Navigate to="/loginAluno" replace />;
+  }
+  return getTipoUsuario() === "nutricionista"
+    ? <Navigate to="/criar-refeicao" replace />
+    : <Navigate to="/home" replace />;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -101,16 +110,7 @@ function App() {
         />
 
         {/* Redirecionamento raiz */}
-        <Route
-          path="/"
-          element={
-            isAuthenticated()
-              ? getTipoUsuario() === "nutricionista"
-                ? <Navigate to="/criar-refeicao" replace />
-                : <Navigate to="/home" replace />
-              : <Navigate to="/loginAluno" replace />
-          }
-        />
+        <Route path="/" element={<RedirecionarInicio />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,10 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { isAuthenticated, getTipoUsuario } from "../services/auth";
+import { getUsuarioLogado, getTipoUsuario } from "../services/auth";
 
 function ProtectedRoute({ children, allowedRoles }) {
   const location = useLocation();
-  const usuario = isAuthenticated();
-  const tipoUsuario = usuario ? getTipoUsuario(usuario) : null;
+  const usuario = getUsuarioLogado();
+  const tipoUsuario = getTipoUsuario(usuario);
 
   if (!usuario) {
     return <Navigate to="/loginAluno" replace state={{ from: location }} />;

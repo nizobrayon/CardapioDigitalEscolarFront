@@ -98,9 +98,6 @@ function Cardapio() {
               <h1>Cardápio</h1>
               <p className="text-muted">Confira as refeições cadastradas.</p>
             </div>
-            <Link to="/criar-refeicao" className="btn btn-primary">
-              <span>+</span> Criar refeição
-            </Link>
           </div>
 
           {carregando && (
@@ -118,11 +115,8 @@ function Cardapio() {
               <span className="empty-state-icon">🍽️</span>
               <h3>Nenhuma refeição cadastrada</h3>
               <p className="text-muted">
-                Comece criando a primeira refeição do cardápio.
+                O cardápio ainda está vazio. Aguarde o nutricionista cadastrar as refeições.
               </p>
-              <Link to="/criar-refeicao" className="btn btn-outline">
-                Cadastrar primeira refeição
-              </Link>
             </div>
           )}
 
@@ -139,22 +133,24 @@ function Cardapio() {
                       {refeicao.categoria}
                     </span>
                   </div>
-                  <div className="acoes flex gap-2">
-                    <Link
-                      to={`/gerenciarRefeicao/${refeicao.id_refeicao}`}
-                      className="btn btn-outline btn-sm"
-                    >
-                      Editar
-                    </Link>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() =>
-                        excluirRefeicao(refeicao.id_refeicao)
-                      }
-                    >
-                      Excluir
-                    </button>
-                  </div>
+                  {tipoUsuario === "nutricionista" && (
+                    <div className="acoes flex gap-2">
+                      <Link
+                        to={`/gerenciarRefeicao/${refeicao.id_refeicao}`}
+                        className="btn btn-outline btn-sm"
+                      >
+                        Editar
+                      </Link>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() =>
+                          excluirRefeicao(refeicao.id_refeicao)
+                        }
+                      >
+                        Excluir
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

@@ -16,8 +16,9 @@ function AvaliacoesAlunos() {
     ])
       .then(([feedbackData, refeicoesData]) => {
         const lista = Array.isArray(feedbackData) ? feedbackData : [];
+        const refeicoesLista = Array.isArray(refeicoesData) ? refeicoesData : [];
         setAvaliacoes(lista);
-        setRefeicoes(Array.isArray(refeicoesData) ? refeicoesData : []);
+        setRefeicoes(refeicoesLista);
         setCarregando(false);
       })
       .catch(() => {
@@ -26,10 +27,25 @@ function AvaliacoesAlunos() {
       });
   }, []);
 
+  const refeicaoPorId = {};
+  refeicoes.forEach((r) => {
+    const id = r.id_refeicao ?? r.idrefeicao ?? r.id;
+    if (id != null) refeicaoPorId[id] = r;
+  });
+
+  const obterNomeRefeicao = (id) => {
+    const r = refeicaoPorId[id];
+    if (!r) return "—";
+    return r.nomeRefeicao ?? r.nomerefeicao ?? r.nome ?? "—";
+  };
+
   const avaliacoesFiltradas =
     filtroRefeicao === ""
       ? avaliacoes
-      : avaliacoes.filter((a) => a.idrefeicao == filtroRefeicao);
+      : avaliacoes.filter(
+          (a) =>
+            (a.idrefeicao ?? a.id_refeicao ?? a.idRefeicao) == filtroRefeicao
+        );
 
   const total = avaliacoes.length;
   const media =
@@ -111,11 +127,16 @@ function AvaliacoesAlunos() {
                     onChange={(e) => setFiltroRefeicao(e.target.value)}
                   >
                     <option value="">Todas as refeições</option>
-                    {refeicoes.map((r) => (
-                      <option key={r.id_refeicao} value={r.id_refeicao}>
-                        {r.nomeRefeicao}
-                      </option>
-                    ))}
+                    {refeicoes.map((r) => {
+                      const id = r.id_refeicao ?? r.idrefeicao ?? r.id;
+                      const nome =
+                        r.nomeRefeicao ?? r.nomerefeicao ?? r.nome ?? "Refeição";
+                      return (
+                        <option key={id} value={id}>
+                          {nome}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
@@ -137,10 +158,10 @@ function AvaliacoesAlunos() {
                       <div className="avaliacao-header flex justify-between items-start">
                         <div>
                           <h3>{av.nomeusuario || "Aluno"}</h3>
-                          <p className="text-sm text-muted">
-                            RA: {av.raaluno || "—"} · Refeição:
-                            {av.nomerefeicao}
-                          </p>
+                            <p className="text-sm text-muted">
+                              RA: {av.raaluno || "—"} · Refeição:
+                              {obterNomeRefeicao(av.idrefeicao ?? av.id_refeicao)}
+                            </p>
                         </div>
                         <div className="text-right">
                           <div className="nota-destaque">

@@ -123,6 +123,11 @@ function Perfil() {
     }
   }
 
+  async function sairConta() {
+    clearUsuarioLogado();
+    navigate("/loginAluno", { replace: true });
+  }
+
   if (carregando) {
     return (
       <div className="page perfil-page">
@@ -270,6 +275,20 @@ function Perfil() {
                 onClick={excluirConta}
               >
                 Excluir conta
+              </button>
+            </div>
+
+            <div className="perfil-sair mt-6 pt-6 border-t">
+              <h3 className="text-muted">Sair da conta</h3>
+              <p className="text-muted text-sm">
+                Deslogue e retorne à tela de login.
+              </p>
+              <button
+                type="button"
+                className="btn btn-outline btn-full mt-3"
+                onClick={sairConta}
+              >
+                Sair
               </button>
             </div>
 
