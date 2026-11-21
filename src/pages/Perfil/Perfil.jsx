@@ -148,7 +148,7 @@ function Perfil() {
           </div>
         </main>
         <footer className="app-footer">
-          Cardápio Digital Escolar © 2026
+          Cardápio Digital Escolar 2026
         </footer>
       </div>
     );
@@ -181,7 +181,6 @@ function Perfil() {
         <div className="container">
           <div className="card max-w-md mx-auto">
             <div className="text-center mb-6">
-              <div className="perfil-avatar">👤</div>
               <h1 className="mb-1">Meu Perfil</h1>
               <p className="text-muted">Consulte e altere seus dados pessoais.</p>
             </div>
@@ -301,7 +300,7 @@ function Perfil() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );

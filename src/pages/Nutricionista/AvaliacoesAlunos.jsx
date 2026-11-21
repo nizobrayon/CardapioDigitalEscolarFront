@@ -95,21 +95,18 @@ function AvaliacoesAlunos() {
               <div className="resumo-grid grid grid-cols-3 gap-4 mb-8">
                 <div className="card resumo-card">
                   <div className="text-center">
-                    <span className="text-3xl block mb-2">⭐</span>
                     <h3 className="mb-1">Média geral</h3>
                     <p className="text-muted text-lg font-bold">{media}</p>
                   </div>
                 </div>
                 <div className="card resumo-card">
                   <div className="text-center">
-                    <span className="text-3xl block mb-2">📊</span>
                     <h3 className="mb-1">Total de avaliações</h3>
                     <p className="text-muted text-lg font-bold">{total}</p>
                   </div>
                 </div>
                 <div className="card resumo-card">
                   <div className="text-center">
-                    <span className="text-3xl block mb-2">🍽️</span>
                     <h3 className="mb-1">Refeições avaliadas</h3>
                     <p className="text-muted text-lg font-bold">
                       {new Set(avaliacoes.map((a) => a.idrefeicao)).size}
@@ -144,7 +141,6 @@ function AvaliacoesAlunos() {
 
               {!carregando && !erro && avaliacoesFiltradas.length === 0 && (
                 <div className="empty-state">
-                  <span className="empty-state-icon">📭</span>
                   <h3>Nenhuma avaliação encontrada</h3>
                   <p className="text-muted">
                     Não há avaliações para os filtros selecionados.
@@ -190,7 +186,7 @@ function AvaliacoesAlunos() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );

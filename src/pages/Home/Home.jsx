@@ -77,7 +77,6 @@ function Home() {
           )}
         </nav>
         <Link to="/perfil" className="perfil-link">
-          <span className="perfil-icone">👤</span>
           <span className="perfil-nome">{nomeUsuario}</span>
         </Link>
       </header>
@@ -87,20 +86,14 @@ function Home() {
           <section className="home-boas-vindas">
             <p className="home-subtitulo">CANTINA DIGITAL ESCOLAR</p>
             <h1>Olá, {nomeUsuario}!</h1>
-            <p>
-              Confira a refeição em destaque e conheça nosso cardápio.
-            </p>
           </section>
 
           <section className="home-cardapio card">
             <div className="home-titulo-secao flex items-center justify-between gap-2">
               <div>
-                <h2>🍽️ Refeição em destaque</h2>
-                <p className="text-muted">Confira o que foi cadastrado na cantina.</p>
+                <h2> Refeição em destaque</h2>
+                <p className="text-muted">Confira a refeições na cantina.</p>
               </div>
-              <Link to="/cardapio" className="btn btn-outline btn-sm">
-                Ver cardápio completo
-              </Link>
             </div>
 
             {carregando && (
@@ -113,7 +106,6 @@ function Home() {
 
             {!carregando && !erro && !refeicao && (
               <div className="empty-state home-sem-refeicao">
-                <span className="empty-state-icon">🥗</span>
                 <h3>Nenhuma refeição cadastrada</h3>
                 <p className="text-muted">
                   Quando uma refeição for cadastrada, ela aparecerá aqui.
@@ -126,7 +118,6 @@ function Home() {
 
             {!carregando && !erro && refeicao && (
               <article className="home-refeicao-card card">
-                <div className="home-refeicao-icone">🍛</div>
                 <div className="home-refeicao-info">
                   <span className="badge">
                     {refeicao.categoria || refeicao.categoriarefeicao || "Refeição"}
@@ -165,7 +156,7 @@ function Home() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );

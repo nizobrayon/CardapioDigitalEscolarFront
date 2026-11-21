@@ -98,14 +98,12 @@ function SugestoesAlunos() {
               <div className="resumo-grid grid grid-cols-2 gap-4 mb-8">
                 <div className="card resumo-card">
                   <div className="text-center">
-                    <span className="text-3xl block mb-2">📋</span>
                     <h3 className="mb-1">Total de sugestões</h3>
                     <p className="text-muted text-lg font-bold">{total}</p>
                   </div>
                 </div>
                 <div className="card resumo-card">
                   <div className="text-center">
-                    <span className="text-3xl block mb-2">⏳</span>
                     <h3 className="mb-1">Pendentes</h3>
                     <p className="text-muted text-lg font-bold">{pendentes}</p>
                   </div>
@@ -114,7 +112,6 @@ function SugestoesAlunos() {
 
               {!carregando && !erro && sugestoes.length === 0 && (
                 <div className="empty-state">
-                  <span className="empty-state-icon">📭</span>
                   <h3>Nenhuma sugestão enviada</h3>
                   <p className="text-muted">
                     Quando os alunos enviarem sugestões, elas aparecerão aqui.
@@ -175,7 +172,7 @@ function SugestoesAlunos() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );

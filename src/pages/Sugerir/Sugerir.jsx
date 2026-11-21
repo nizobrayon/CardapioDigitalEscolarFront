@@ -168,7 +168,7 @@ function Sugerir() {
                 <h1 className="mb-2">Sugerir Refeição</h1>
                 <p className="text-muted">
                   Tem uma ideia de prato para o cardápio escolar?
-                  Compartilhe sua sugestão conosco!
+                  Compartilhe sua sugestão aqui.
                 </p>
               </div>
 
@@ -234,7 +234,6 @@ function Sugerir() {
 
               {!carregandoLista && minhasSugestoes.length === 0 && (
                 <div className="empty-state">
-                  <span className="empty-state-icon">📭</span>
                   <h3>Nenhuma sugestão ainda</h3>
                   <p className="text-muted">
                     Envie uma sugestão para vê-la aqui.

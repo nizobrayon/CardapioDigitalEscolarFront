@@ -130,7 +130,7 @@ function CriarRefeicao() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );

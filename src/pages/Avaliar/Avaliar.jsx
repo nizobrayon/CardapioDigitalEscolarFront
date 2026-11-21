@@ -252,10 +252,9 @@ function Avaliar() {
 
               {!carregando && minhasAvaliacoes.length === 0 && (
                 <div className="empty-state">
-                  <span className="empty-state-icon">📭</span>
                   <h3>Nenhuma avaliação ainda</h3>
                   <p className="text-muted">
-                    Avalie uma refeição para vê-la aqui.
+                    Avalie uma refeição para ver aqui.
                   </p>
                 </div>
               )}
@@ -295,7 +294,7 @@ function Avaliar() {
       </main>
 
       <footer className="app-footer">
-        Cardápio Digital Escolar © 2026
+        Cardápio Digital Escolar 2026
       </footer>
     </div>
   );
