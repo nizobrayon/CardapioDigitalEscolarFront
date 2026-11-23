@@ -11,7 +11,7 @@ function Avaliar() {
   const tipoUsuario = usuario?.tipoUsuario || getTipoUsuario() || null;
   const [nota, setNota] = useState(0);
   const [comentario, setComentario] = useState("");
-  const [idRefeicao, setIdRefeicao] = useState("");
+  const [id_refeicao, setId_refeicao] = useState("");
   const [refeicoes, setRefeicoes] = useState([]);
   const [minhasAvaliacoes, setMinhasAvaliacoes] = useState([]);
   const [mensagem, setMensagem] = useState("");
@@ -51,6 +51,13 @@ function Avaliar() {
       });
   }, [idUsuario, usuario]);
 
+  console.log("Dados enviados:", {
+  idUsuario,
+  id_refeicao: Number(id_refeicao),
+  nota,
+  comentario,
+});
+
   async function handleEnviar(event) {
     event.preventDefault();
     setMensagem("");
@@ -59,7 +66,7 @@ function Avaliar() {
       setMensagem("Selecione uma nota de 1 a 5 estrelas.");
       return;
     }
-    if (!idRefeicao) {
+    if (!id_refeicao) {
       setMensagem("Selecione a refeição.");
       return;
     }
@@ -75,7 +82,7 @@ function Avaliar() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           idUsuario,
-          idRefeicao: Number(idRefeicao),
+          id_refeicao: Number(id_refeicao),
           nota,
           comentario,
         }),
@@ -85,7 +92,7 @@ function Avaliar() {
       setMensagem(dados.mensagem || "Avaliação registrada com sucesso!");
       setNota(0);
       setComentario("");
-      setIdRefeicao("");
+      setId_refeicao("");
     } catch (erro) {
       setMensagem(
         erro.message === "Failed to fetch"
@@ -173,8 +180,8 @@ function Avaliar() {
                   <select
                     id="refeicao"
                     className="form-control"
-                    value={idRefeicao}
-                    onChange={(e) => setIdRefeicao(e.target.value)}
+                    value={id_refeicao}
+                    onChange={(e) => setId_refeicao(e.target.value)}
                     required
                   >
                     <option value="">Selecione uma refeição</option>
